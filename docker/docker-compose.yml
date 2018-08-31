@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+    corsidiformazione:
+      image: eap71-cooprp
+      restart: always
+      ports:
+        - "8080:8080"
+        - "8787:8787"

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>it.coopservice.cooprp</groupId>
+    <artifactId>cooprp</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>gesta-service</module>
+        <module>cooprp-core</module>
+        <module>cooprp-web</module>
+    </modules>
+
+    <packaging>pom</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.javaee-api>7.0</version.javaee-api>
+        <version.jboss-logging>3.1.2.GA</version.jboss-logging>
+        <version.jexcelapi-jxl>2.6.12</version.jexcelapi-jxl>
+        <version.httpclient>4.2.1</version.httpclient>
+        <version.commons-lang3>3.7</version.commons-lang3>
+        <version.jackson-datatype-hibernate5>2.9.5</version.jackson-datatype-hibernate5>
+        <version.jackson-datatype-jsr310>2.9.5</version.jackson-datatype-jsr310>
+        <version.java-jwt>2.1.0</version.java-jwt>
+        <version.hibernate-core>5.2.17.Final</version.hibernate-core>
+        <flower-ldap.version>1.0.0</flower-ldap.version>
+        <version.jdk>1.8</version.jdk>
+        <version.wildfly>10.0.0.Final</version.wildfly>
+        <version.resteasy>3.0.13.Final</version.resteasy>
+        <version.bouncycastle.jdk16>1.46</version.bouncycastle.jdk16>
+        <version.com.fasterxml.jackson>2.6.4</version.com.fasterxml.jackson>
+
+        <version.io.opentracing>0.31.0-RC1</version.io.opentracing>
+        <version.jaeger>0.22.0-RC1</version.jaeger>
+
+        <version.failsafe>0.9.5</version.failsafe>
+        <version.org.apache.httpcomponents.core>4.4</version.org.apache.httpcomponents.core>
+        <version.com.vladmihalcea>2.2.2</version.com.vladmihalcea>
+        <version.org.slf4j>1.7.25</version.org.slf4j>
+        <version.io.rest-assured>3.0.0</version.io.rest-assured>
+    </properties>
+
+
+    <dependencyManagement>
+
+        <dependencies>
+            <dependency>
+                <groupId>com.uber.jaeger</groupId>
+                <artifactId>jaeger-core</artifactId>
+                <version>${version.jaeger}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.uber.jaeger</groupId>
+                <artifactId>jaeger-tracerresolver</artifactId>
+                <version>${version.jaeger}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>${version.javaee-api}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${version.commons-lang3}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>${version.org.apache.httpcomponents.core}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${version.hibernate-core}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-hibernate5</artifactId>
+                <version>${version.jackson-datatype-hibernate5}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>${version.jackson-datatype-jsr310}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.logging</groupId>
+                <artifactId>jboss-logging</artifactId>
+                <version>${version.jboss-logging}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${version.httpclient}</version>
+                <scope>provided</scope>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.vladmihalcea</groupId>
+                <artifactId>hibernate-types-52</artifactId>
+                <version>${version.com.vladmihalcea}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${version.org.slf4j}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>it.coopservice.cooprp</groupId>
+                <artifactId>cooprp-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>it.coopservice.cooprp</groupId>
+                <artifactId>gesta-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-hibernate5</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+
+
+        <!-- JWT -->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>${version.java-jwt}</version>
+        </dependency>
+
+
+        <!-- jee -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <!-- jpa -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- ejb3 annotation -->
+        <dependency>
+            <groupId>org.wildfly</groupId>
+            <artifactId>wildfly-ejb3</artifactId>
+            <version>${version.wildfly}</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jconsole</artifactId>
+                    <groupId>sun.jdk</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
+        <!-- rest -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${version.com.fasterxml.jackson}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${version.com.fasterxml.jackson}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${version.com.fasterxml.jackson}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-multipart-provider</artifactId>
+            <version>${version.resteasy}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jackson-provider</artifactId>
+            <version>${version.resteasy}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+        <!-- JUnit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.2</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>io.opentracing</groupId>
+            <artifactId>opentracing-api</artifactId>
+            <version>${version.io.opentracing}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.opentracing</groupId>
+            <artifactId>opentracing-util</artifactId>
+            <version>${version.io.opentracing}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.uber.jaeger</groupId>
+            <artifactId>jaeger-core</artifactId>
+            <version>${version.jaeger}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.uber.jaeger</groupId>
+            <artifactId>jaeger-tracerresolver</artifactId>
+            <version>${version.jaeger}</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <defaultGoal>clean package</defaultGoal>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <verbose>true</verbose>
+                    <fork>false</fork>
+                    <executable>$JAVA_HOME/bin/javac</executable>
+                    <compilerVersion>1.8</compilerVersion>
+                    <source>${version.jdk}</source>
+                    <target>${version.jdk}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
