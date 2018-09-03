@@ -15,6 +15,7 @@ public class AppConstants {
     public static final String COMPANY_CONFIGURATIONS_PATH = "v1/companyconfigurations";
     public static final String ABILITAZIONI_GESIV_PATH = "/v1/abilitazioni-gesiv";
 
+    public static final String LOGIN_PATH = "/v1/login";
     public static final String OPERATIONS_QUEUE = "operations_queue";
 
 

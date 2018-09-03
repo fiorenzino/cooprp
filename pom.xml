@@ -161,6 +161,12 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.novell.ldap</groupId>
+            <artifactId>flower-ldap</artifactId>
+            <version>${flower-ldap.version}</version>
+            <scope>compile</scope>
+        </dependency>
 
         <!-- JWT -->
         <dependency>

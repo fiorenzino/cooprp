@@ -34,12 +34,23 @@
     </extensions>
 
     <system-properties>
-        <property name="corsidiformazione.jwtSecret" value="enoiro"/>
-        <property name="corsidiformazione.jwtExpireTime" value="1000000"/>
-        <property name="corsidiformazione.jwtRoles" value="Admin"/>
-        <property name="corsidiformazione.jwtMobileSecret" value="m0b1l3p1l0m4xx"/>
-        <property name="corsidiformazione.jwtMobileExpireTime" value="1000000"/>
-        <property name="corsidiformazione.jwtMobileRoles" value="Mobile"/>
+
+
+        <property name="cooprp.ldapHosts" value="idm.coopservice.it"/>
+        <property name="cooprp.ldapPort" value="636"/>
+        <property name="cooprp.ldapWithAuth" value="true"/>
+        <property name="cooprp.ldapWithSsl" value="true"/>
+        <property name="cooprp.ldapBase" value="o=SD"/>
+        <property name="cooprp.ldapBaseTech" value="ou=Users,o=Coopservice"/>
+
+        <property name="cooprp.ldapBindDN" value="cn=ldapuser,o=services"/>
+        <property name="cooprp.ldapBindCredential" value="ldappwd1"/>
+        <property name="cooprp.jwtRoles" value="Admin,Mobile,Test1,Test2,Test3,Test4,Test5,Test6,CS_Soci,CS_AICFE"/>
+        <property name="cooprp.jwtSecret" value="12345678"/>
+        <property name="cooprp.restTrace" value="True"/>
+
+        <property name="cooprp.jwtExpireTime" value="1000000"/>
+
     </system-properties>
 
     <management>

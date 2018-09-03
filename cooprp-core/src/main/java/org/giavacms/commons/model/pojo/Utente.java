@@ -13,6 +13,7 @@ public class Utente implements Serializable {
 
     private String username;
     private String nome;
+    private String dn;
     private List<String> ruoli;
 
     public List<String> getRuoli() {
@@ -42,11 +43,22 @@ public class Utente implements Serializable {
         this.nome = nome;
     }
 
+    public String getDn()
+    {
+        return dn;
+    }
+
+    public void setDn(String dn)
+    {
+        this.dn = dn;
+    }
+
     public Map<String, Object> toMap() {
         HashMap<String, Object> claims = new HashMap<String, Object>();
         claims.put("username", username);
         claims.put("name", nome);
         claims.put("roles", ruoli.toArray());
+        claims.put("dn", dn);
         return claims;
 
     }

@@ -10,8 +10,19 @@ public enum AppProperties {
     jwtExpireTime,
     jwtMobileExpireTime,
     jwtRoles,
-    fileUploadPath
+    fileUploadPath,
 
+
+    // ldap
+    ldapHosts,
+    ldapPort,
+    ldapWithAuth,
+    ldapWithSsl,
+    ldapBase,
+    ldapBindDN,
+    ldapBindCredential,
+    ldapGroupMembership,
+    ldapBaseTech,
     ;
 
     Logger logger = Logger.getLogger(getClass());
