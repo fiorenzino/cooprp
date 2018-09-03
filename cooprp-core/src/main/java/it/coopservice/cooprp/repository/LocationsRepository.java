@@ -9,7 +9,7 @@ import java.util.Map;
 
 @Stateless
 @LocalBean
-public class LocationRepository extends BaseRepository<Location>
+public class LocationsRepository extends BaseRepository<Location>
 {
    @Override
    protected void applyRestrictions(Search<Location> search, String alias, String separator,

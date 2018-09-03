@@ -9,7 +9,7 @@ import java.util.Map;
 
 @Stateless
 @LocalBean
-public class NotificationRepository extends BaseRepository<Notification>
+public class NotificationsRepository extends BaseRepository<Notification>
 {
    @Override protected void applyRestrictions(Search<Notification> search, String alias, String separator,
             StringBuffer sb, Map<String, Object> params) throws Exception

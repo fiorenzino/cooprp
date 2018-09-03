@@ -1,37 +1,35 @@
 package it.coopservice.cooprp.service.rs;
 
 import it.coopservice.cooprp.management.AppConstants;
-import it.coopservice.cooprp.model.Notification;
-import it.coopservice.cooprp.repository.BaseRepository;
-import it.coopservice.cooprp.repository.NotificationRepository;
-import org.giavacms.api.repository.Search;
+import it.coopservice.cooprp.model.Location;
+import it.coopservice.cooprp.repository.LocationsRepository;
 import org.giavacms.api.service.RsRepositoryService;
 import org.giavacms.commons.jwt.annotation.AccountTokenVerification;
 
-import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.Map;
 
-@Path(AppConstants.NOTIFICATIONS_PATH)
+@Path(AppConstants.LOCATIONS_PATH)
 @Stateless
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @AccountTokenVerification
-public class NotificationRepositoryRs extends RsRepositoryService<Notification>
+public class LocationsRepositoryRs extends RsRepositoryService<Location>
 {
-   public NotificationRepositoryRs()
+   public LocationsRepositoryRs()
    {
 
    }
 
    @Inject
-   public NotificationRepositoryRs(NotificationRepository notificationRepository)
+   public LocationsRepositoryRs(LocationsRepository locationRepository)
    {
-      super(notificationRepository);
+      super(locationRepository);
    }
+
 }
+

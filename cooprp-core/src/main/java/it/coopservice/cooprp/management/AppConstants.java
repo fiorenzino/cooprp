@@ -13,7 +13,7 @@ public class AppConstants {
     public static final String NOTIFICATIONS_PATH = "/v1/notifications";
     public static final String WORKSHIFTS_PATH = "/v1/workshifts";
     public static final String COMPANY_CONFIGURATIONS_PATH = "v1/companyconfigurations";
-    public static final String ABILITAZIONI_GESIV_PATH = "/v1/abilitazioni-gesiv";
+    public static final String LANGUAGES_PATH = "/v1/languages";
 
     public static final String LOGIN_PATH = "/v1/login";
     public static final String OPERATIONS_QUEUE = "operations_queue";

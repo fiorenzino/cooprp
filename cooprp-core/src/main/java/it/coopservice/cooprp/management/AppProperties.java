@@ -23,6 +23,8 @@ public enum AppProperties {
     ldapBindCredential,
     ldapGroupMembership,
     ldapBaseTech,
+
+    defaultSchema,
     ;
 
     Logger logger = Logger.getLogger(getClass());

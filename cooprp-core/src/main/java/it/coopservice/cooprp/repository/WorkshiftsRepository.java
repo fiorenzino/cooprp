@@ -9,7 +9,7 @@ import java.util.Map;
 
 @Stateless
 @LocalBean
-public class WorkshiftRepository extends BaseRepository<Workshift>
+public class WorkshiftsRepository extends BaseRepository<Workshift>
 {
    @Override protected void applyRestrictions(Search<Workshift> search, String alias, String separator, StringBuffer sb,
             Map<String, Object> params) throws Exception

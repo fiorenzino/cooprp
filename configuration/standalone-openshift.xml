@@ -50,6 +50,7 @@
         <property name="cooprp.restTrace" value="True"/>
 
         <property name="cooprp.jwtExpireTime" value="1000000"/>
+        <property name="cooprp.defaultSchema" value="cooprp."/>
 
     </system-properties>
 
