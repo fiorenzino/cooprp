@@ -14,7 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 
-@Path(AppConstants.ABILITAZIONI_GESIV_PATH)
+@Path(AppConstants.COMPANY_CONFIGURATIONS_PATH)
 @Stateless
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)

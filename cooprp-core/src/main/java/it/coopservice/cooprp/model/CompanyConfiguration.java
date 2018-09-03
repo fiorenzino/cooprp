@@ -11,7 +11,7 @@ import static it.coopservice.cooprp.model.CompanyConfiguration.TABLE_NAME;
 @Table(name = TABLE_NAME)
 public class CompanyConfiguration implements Serializable {
 
-    public static final String TABLE_NAME = "crp_companyconfigurations";
+    static final String TABLE_NAME = "crp_companyconfigurations";
 
     @Id
     public Long id;

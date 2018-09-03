@@ -9,12 +9,13 @@ import java.util.Map;
 
 @Stateless
 @LocalBean
-public class CompanyConfigurationsRepository extends BaseRepository<CompanyConfiguration> {
+public class CompanyConfigurationsRepository extends BaseRepository<CompanyConfiguration>
+{
     @Override
     protected void applyRestrictions(Search<CompanyConfiguration> search, String alias, String separator,
-                                     StringBuffer sb,
-                                     Map<String, Object> params) throws Exception {
-
+             StringBuffer sb,
+             Map<String, Object> params) throws Exception
+    {
 
     }
 

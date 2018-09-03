@@ -151,20 +151,19 @@
         <subsystem xmlns="urn:jboss:domain:datasources:5.0">
             <datasources>
 
-                <datasource jta="true" jndi-name="java:jboss/datasources/CorsiformazioneDS"
-                            pool-name="CorsiformazioneDS_Pool" enabled="true" use-java-context="true"
+                <datasource jta="true" jndi-name="java:jboss/datasources/CoopRPDS"
+                            pool-name="CoopRPDS_Pool" enabled="true" use-java-context="true"
                             use-ccm="true">
-                    <connection-url>jdbc:postgresql://pgsqldev.coopservice.it:5432/eggsdev</connection-url>
+                    <connection-url>jdbc:postgresql://pgsqldev.coopservice.it:5432/ictdev</connection-url>
                     <driver>postgresql</driver>
                     <transaction-isolation>TRANSACTION_READ_COMMITTED</transaction-isolation>
                     <pool>
                         <min-pool-size>10</min-pool-size>
                         <max-pool-size>100</max-pool-size>
-                        <!--<prefill>true</prefill>-->
                     </pool>
                     <security>
-                        <user-name>eggsdev</user-name>
-                        <password>8tfm845c</password>
+                        <user-name>ictdev</user-name>
+                        <password>tJYnZ3H4r81hJ8qH</password>
                     </security>
                     <validation>
                         <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker"/>
@@ -184,8 +183,6 @@
                     </security>
                 </datasource>
                 <drivers>
-                    <driver name="db2" module="com.ibm.db2"/>
-                    <!--<driver name="oracle" module="oracle.jdbc"/>-->
                     <driver name="h2" module="com.h2database.h2">
                         <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
                     </driver>

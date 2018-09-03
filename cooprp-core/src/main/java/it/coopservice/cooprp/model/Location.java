@@ -1,6 +1,5 @@
 package it.coopservice.cooprp.model;
 
-import com.vividsolutions.jts.geom.Coordinate;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.vividsolutions.jts.geom.Point;
@@ -13,8 +12,7 @@ import static it.coopservice.cooprp.model.Location.TABLE_NAME;
 @Entity
 public class Location implements Serializable {
 
-    public static final String TABLE_NAME = "crp_locations";
-
+    static final String TABLE_NAME = "crp_locations";
 
     @Id
     @GeneratedValue(generator = "uuid")

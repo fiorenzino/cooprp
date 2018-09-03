@@ -5,12 +5,13 @@
           http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
              version="1.0">
     <persistence-unit name="jpa">
-        <jta-data-source>java:jboss/datasources/CooprpDS</jta-data-source>
+        <jta-data-source>java:jboss/datasources/CoopRPDS</jta-data-source>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.spatial.dialect.postgis.PostgisDialect"/>
             <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.default_schema" value="cooprp"/>
         </properties>
     </persistence-unit>
 </persistence>
