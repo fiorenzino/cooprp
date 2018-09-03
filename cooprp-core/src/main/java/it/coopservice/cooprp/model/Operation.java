@@ -1,5 +1,6 @@
 package it.coopservice.cooprp.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.coopservice.cooprp.model.enums.OperationStatus;
 import it.coopservice.cooprp.model.enums.OperationType;
@@ -17,7 +18,7 @@ import static it.coopservice.cooprp.model.Operation.TABLE_NAME;
 public class Operation implements Serializable
 {
 
-   public static final String TABLE_NAME = "crp_loperations";
+   public static final String TABLE_NAME = "crp_operations";
 
    @Id
    @GeneratedValue(generator = "uuid")
@@ -27,6 +28,7 @@ public class Operation implements Serializable
 
    @Enumerated(EnumType.STRING)
    public OperationStatus operationStatus;
+
    @Enumerated(EnumType.STRING)
    public OperationType operationType;
 
@@ -37,18 +39,23 @@ public class Operation implements Serializable
    public String location_uuid;
 
    @Temporal(TemporalType.TIMESTAMP)
+   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm", timezone = "Europe/Rome")
    public Date dataOra;
+
    public String codiceFiscale;
    public String latitudine;
    public String longitudine;
+
    @Temporal(TemporalType.DATE)
+   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Europe/Rome")
    public Date datRicezione;
+
    @Temporal(TemporalType.DATE)
+   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Europe/Rome")
    public Date dataNotifica;
 
    public Operation()
    {
 
    }
-
 }
