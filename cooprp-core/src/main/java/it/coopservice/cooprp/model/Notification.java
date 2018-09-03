@@ -1,10 +1,12 @@
 package it.coopservice.cooprp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.coopservice.cooprp.model.enums.OperationStatus;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 import static it.coopservice.cooprp.model.Operation.TABLE_NAME;
 
@@ -22,8 +24,20 @@ public class Notification implements Serializable {
     @Column(name = "uuid", unique = true)
     public String uuid;
 
+    @Enumerated(EnumType.STRING)
     public OperationStatus operationStatus;
 
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "operation_uuid", insertable = false, updatable = false)
+    public Operation operation;
+    public String operation_uuid;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date dataOra;
+    public String codiceFiscale;
+    public String uuid_esterno;
 
     public Notification() {
 

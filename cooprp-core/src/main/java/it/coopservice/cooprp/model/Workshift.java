@@ -1,9 +1,11 @@
 package it.coopservice.cooprp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 import static it.coopservice.cooprp.model.Workshift.TABLE_NAME;
 
@@ -20,7 +22,29 @@ public class Workshift implements Serializable {
     @Column(name = "uuid", unique = true)
     public String uuid;
 
+    public String codiceFiscale;
+    public String societa;
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date dataInizio;
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date dataFine;
 
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "locationInizio_uuid", insertable = false, updatable = false)
+    public Location locationInizio;
+    public String locationInizio_uuid;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "locationFine_uuid", insertable = false, updatable = false)
+    public Location locationFine;
+    public String locationFine_uuid;
+
+    public String wbsInizio;
+    public String wbsFine;
+
+    public String descrizione;
     public Workshift() {
     }
 
