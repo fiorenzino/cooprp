@@ -1,5 +1,8 @@
 package it.coopservice.cooprp.service.rs;
 
+import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.geom.Point;
 import it.coopservice.cooprp.management.AppConstants;
 import it.coopservice.cooprp.model.Location;
 import it.coopservice.cooprp.repository.LocationsRepository;
@@ -30,6 +33,23 @@ public class LocationsRepositoryRs extends RsRepositoryService<Location>
    {
       super(locationRepository);
    }
+
+   ///In mapping frameworks spatial coordinates are often in order of latitude and longitude. In spatial databases spatial coordinates are in x = longitude, and y = latitude.
+   @Override protected void postUpdate(Location object) throws Exception
+   {
+      int x = Integer.parseInt(object.longitudine);
+      int y = Integer.parseInt(object.latitudine);
+      object.location = new GeometryFactory().createPoint(new Coordinate(x, y));
+   }
+
+   @Override protected void postPersist(Location object) throws Exception
+   {
+      int x = Integer.parseInt(object.longitudine);
+      int y = Integer.parseInt(object.latitudine);
+      object.location = new GeometryFactory().createPoint(new Coordinate(x, y));
+      super.postPersist(object);
+   }
+
 
 }
 
