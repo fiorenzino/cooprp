@@ -39,37 +39,5 @@ public class LanguagesRepositoryRs extends RsRepositoryService<Language>
       super(languagesRepository);
    }
 
-   @GET
-   @Path("/languages")
-   public Response getLanguages()
-   {
-      try
-      {
-         List<LanguageStatus> result = languagesRepository.getLangugaesStatus();
-         return Response.ok(result).build();
-      }
-      catch (Exception ex)
-      {
-         logger.error(ex);
-         return jsonErrorMessageResponse(ex);
-      }
-
-   }
-
-   @GET
-   @Path("/languages/{language}")
-   public Response getLanguageMap(@PathParam("language") String language)
-   {
-      try
-      {
-         JsonObject jo = languagesRepository.getLanguageMap(language);
-         return Response.ok(jo.toString()).build();
-      }
-      catch (Exception ex)
-      {
-         logger.error(ex);
-         return jsonErrorMessageResponse(ex);
-      }
-   }
 }
 
