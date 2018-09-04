@@ -85,4 +85,6 @@ public interface Repository<T> {
      */
     public void detach(T object);
 
+    public List<T> getList(Search<T> search) throws Exception;
+
 }

@@ -4,7 +4,7 @@ import it.coopservice.cooprp.management.AppConstants;
 import it.coopservice.cooprp.model.Operation;
 import it.coopservice.cooprp.repository.OperationsRepository;
 import org.giavacms.api.service.RsRepositoryService;
-import org.giavacms.commons.jwt.annotation.AccountTokenVerification;
+import org.giavacms.commons.auth.jwt.annotation.AccountTokenVerification;
 
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;

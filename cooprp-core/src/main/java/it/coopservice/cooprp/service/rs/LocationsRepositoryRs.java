@@ -2,12 +2,11 @@ package it.coopservice.cooprp.service.rs;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.geom.Point;
 import it.coopservice.cooprp.management.AppConstants;
 import it.coopservice.cooprp.model.Location;
 import it.coopservice.cooprp.repository.LocationsRepository;
 import org.giavacms.api.service.RsRepositoryService;
-import org.giavacms.commons.jwt.annotation.AccountTokenVerification;
+import org.giavacms.commons.auth.jwtcookie.annotation.AccountCookieAndTokenVerification;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -20,7 +19,7 @@ import javax.ws.rs.core.MediaType;
 @Stateless
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@AccountTokenVerification
+@AccountCookieAndTokenVerification
 public class LocationsRepositoryRs extends RsRepositoryService<Location>
 {
    public LocationsRepositoryRs()

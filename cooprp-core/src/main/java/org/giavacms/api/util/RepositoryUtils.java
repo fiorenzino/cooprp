@@ -1,5 +1,6 @@
 package org.giavacms.api.util;
 
+import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -388,6 +389,11 @@ public class RepositoryUtils
          }
       }
       return fieldValue;
+   }
+
+   public static void setId(Object object, Serializable key) throws Exception
+   {
+      setFieldByName(object.getClass(), object, getIdFieldName(object.getClass()), key.toString());
    }
 
    public static void main(String[] args) throws Exception

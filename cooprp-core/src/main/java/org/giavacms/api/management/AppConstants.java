@@ -8,11 +8,12 @@ public class AppConstants
 
    public static final String JSON_ERROR_KEY = "msg";
 
-   public static final Integer CONNECTION_TIMEOUT = 180;
+   public static final String HTTP_GET_METHOD = "GET";
+   public static final String HTTP_OPTIONS_METHOD = "OPTIONS";
 
-   public static final String BASE64 = "base64";
-   public static final String BYTES = "bytes";
+   public static final String ADMIN_ROLE = "Admin";
 
-   public final static String LDS = "LDS";
-   public final static String LDC = "LDC";
+   public static final int CONNECTION_TIMEOUT = 1000*60;
+
+
 }

@@ -291,4 +291,24 @@ public class Search<T> implements Serializable
    {
       this.notNil = notNil;
    }
+
+   @Override
+   public String toString() {
+      return "Search{" +
+              "obj=" + obj +
+              ", like=" + like +
+              ", not=" + not +
+              ", from=" + from +
+              ", to=" + to +
+              ", nil=" + nil +
+              ", notNil=" + notNil +
+              ", withH=" + withH +
+              ", classType=" + classType +
+              ", defaultOrder='" + defaultOrder + '\'' +
+              ", order='" + order + '\'' +
+              ", grouping='" + grouping + '\'' +
+              ", orderAsc=" + orderAsc +
+              ", active=" + active +
+              '}';
+   }
 }

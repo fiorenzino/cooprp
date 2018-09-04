@@ -4,17 +4,13 @@ package org.giavacms.core.util;
  * Created by fiorenzo on 05/12/15.
  */
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
+import org.giavacms.api.management.AppConstants;
+import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+
 import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-
-//import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import java.util.concurrent.TimeUnit;
 
 public class WebTargetClosable implements AutoCloseable
 {
@@ -27,33 +23,6 @@ public class WebTargetClosable implements AutoCloseable
 
    }
 
-   public Client ignoreSSLClient() throws Exception
-   {
-
-      SSLContext sslcontext = SSLContext.getInstance("TLS");
-
-      sslcontext.init(null, new TrustManager[] { new X509TrustManager()
-      {
-         public void checkClientTrusted(X509Certificate[] arg0, String arg1) throws CertificateException
-         {
-         }
-
-         public void checkServerTrusted(X509Certificate[] arg0, String arg1) throws CertificateException
-         {
-         }
-
-         public X509Certificate[] getAcceptedIssuers()
-         {
-            return new X509Certificate[0];
-         }
-      } }, new java.security.SecureRandom());
-
-      return ClientBuilder.newBuilder()
-               .sslContext(sslcontext)
-               .hostnameVerifier((s1, s2) -> true)
-               .build();
-   }
-
    /*
     * targetHost + targetPath togheter
     */
@@ -61,11 +30,11 @@ public class WebTargetClosable implements AutoCloseable
    {
       if (targetHostPath == null || targetHostPath.trim().isEmpty())
          throw new Exception("targetHostPath is null");
-      //      client = new ResteasyClientBuilder()
-      //         .disableTrustManager()
-      //         .socketTimeout(AppConstants.CONNECTION_TIMEOUT, TimeUnit.SECONDS)
-      //               .build();
-      webTarget = ignoreSSLClient().target(targetHostPath);
+      client = new ResteasyClientBuilder()
+         .disableTrustManager()
+         .socketTimeout(AppConstants.CONNECTION_TIMEOUT, TimeUnit.SECONDS)
+               .build();
+      webTarget = client.target(targetHostPath);
    }
 
    /*
@@ -75,11 +44,11 @@ public class WebTargetClosable implements AutoCloseable
    {
       if (targetPath == null || targetPath.trim().isEmpty())
          throw new Exception("targetPath is null");
-      //      client = new ResteasyClientBuilder().disableTrustManager()
-      //               .build();
+      client = new ResteasyClientBuilder().disableTrustManager()
+               .build();
       if (targetHost == null || targetHost.isEmpty())
          throw new Exception("targetHost is null");
-      webTarget = ignoreSSLClient().target(targetHost + targetPath);
+      webTarget = client.target(targetHost + targetPath);
    }
 
    @Override

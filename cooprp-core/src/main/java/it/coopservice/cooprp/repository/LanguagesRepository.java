@@ -80,5 +80,8 @@ public class LanguagesRepository extends BaseRepository<Language>
       return builder.build();
    }
 
-
+   @Override protected String getDefaultOrderBy()
+   {
+      return "language, key";
+   }
 }

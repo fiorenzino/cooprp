@@ -15,6 +15,8 @@ public class AppConstants {
     public static final String COMPANY_CONFIGURATIONS_PATH = "v1/companyconfigurations";
     public static final String LANGUAGES_PATH = "/v1/languages";
 
+    public static final String I18N_PATH = "/v1/i18n";
+
     public static final String LOGIN_PATH = "/v1/login";
     public static final String OPERATIONS_QUEUE = "operations_queue";
 

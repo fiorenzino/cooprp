@@ -52,6 +52,8 @@
         <property name="cooprp.jwtExpireTime" value="1000000"/>
         <property name="cooprp.defaultSchema" value="cooprp."/>
 
+        <property name="cooprp.casExcluded" value="/download;/api"/>
+        <property name="cooprp.casServerLoginUrl" value="https://cas.coopservice.it/cas/login"/>
     </system-properties>
 
     <management>
@@ -517,6 +519,28 @@
                 <security-domain name="GeneralDomainCL" cache-type="default">
                     <authentication>
                         <login-module code="org.giavacms.commons.auth.jwt.module.JWTLoginModule" flag="sufficient"/>
+
+                        <login-module code="org.giavacms.commons.auth.cas.module.CasLoginModule" flag="optional">
+                            <module-option name="targetHost" value="https://cas.coopservice.it"/>
+                            <module-option name="targetIdentityPath" value="/cas/v1/tickets/{tgt}"/>
+                            <module-option name="targetPathValidate" value="/cas/serviceValidate"/>
+                        </login-module>
+
+                        <login-module code="org.jboss.security.auth.spi.LdapExtLoginModule" flag="required">
+                            <module-option name="password-stacking" value="useFirstPass"/>
+                            <module-option name="java.naming.provider.url" value="ldaps://idm.coopservice.it:636"/>
+                            <module-option name="java.naming.security.authentication" value="simple"/>
+                            <module-option name="allowEmptyPasswords" value="true"/>
+                            <module-option name="bindDN" value="cn=ldapuser,o=services"/>
+                            <module-option name="bindCredential" value="ldappwd1"/>
+                            <module-option name="baseCtxDN" value="ou=Users,o=Coopservice"/>
+                            <module-option name="baseFilter" value="(csIDVuid={0})"/>
+                            <module-option name="rolesCtxDN" value="ou=Applicazioni CAS,ou=Groups,o=Coopservice"/>
+                            <module-option name="roleFilter" value="(csCASmembership={1})"/>
+                            <module-option name="roleAttributeID" value="csCASrole"/>
+                            <module-option name="roleAttributeIsDN" value="false"/>
+                            <module-option name="roleRecursion" value="-1"/>
+                        </login-module>
                     </authentication>
                 </security-domain>
 

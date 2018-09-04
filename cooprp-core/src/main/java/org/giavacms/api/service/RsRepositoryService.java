@@ -23,7 +23,7 @@ public abstract class RsRepositoryService<T> extends RsResponseService implement
 
     protected final Logger logger = Logger.getLogger(getClass());
 
-    private Repository<T> repository;
+    protected Repository<T> repository;
 
     public RsRepositoryService() {
 
@@ -37,26 +37,36 @@ public abstract class RsRepositoryService<T> extends RsResponseService implement
     }
 
     @POST
+//   @RolesAllowed({ "Admin" })
     public Response persist(T object) throws Exception {
         try {
             prePersist(object);
         } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+            logger.error(e.getMessage());
             return jsonMessageResponse(Status.BAD_REQUEST, e);
         }
         try {
-            repository.persist(object);
-            if (object == null || getId(object) == null) {
+            T persisted = doPersist(object);
+            if (persisted == null || getId(persisted) == null) {
                 logger.error("Failed to create resource: " + object);
                 return jsonErrorMessageResponse(object);
             } else {
-                postPersist(object);
-                return Response.status(Status.OK).entity(object).build();
+                return Response.status(Status.OK).entity(persisted).build();
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             return jsonErrorMessageResponse(object);
+        } finally {
+            try {
+                postPersist(object);
+            } catch (Exception e) {
+                logger.error(e.getMessage(), e);
+            }
         }
+    }
+
+    protected T doPersist(T object) throws Exception {
+        return repository.persist(object);
     }
 
     protected void postPersist(T object) throws Exception {
@@ -70,9 +80,8 @@ public abstract class RsRepositoryService<T> extends RsResponseService implement
      */
 
     @GET
-    @Path("/get/{id}")
+    @Path("/{id}")
     public Response fetch(@PathParam("id") String id) {
-        logger.info("@GET :" + id);
         try {
             T t = repository.fetch(repository.castId(id));
             if (t == null) {
@@ -107,8 +116,9 @@ public abstract class RsRepositoryService<T> extends RsResponseService implement
     }
 
     @PUT
-    @Path("/put/{id}")
-    public Response update(@PathParam("id") String id, T object) throws Exception {
+    @Path("/{id}")
+//   @RolesAllowed({ "Admin" })
+    public Response update(@PathParam("id") Long id, T object) throws Exception {
         logger.info("@PUT update:" + object.toString());
         try {
             object = preUpdate(object);
@@ -117,11 +127,16 @@ public abstract class RsRepositoryService<T> extends RsResponseService implement
         }
         try {
             doUpdate(object);
-            postUpdate(object);
             return Response.status(Status.OK).entity(object).build();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             return jsonErrorMessageResponse(object);
+        } finally {
+            try {
+                postUpdate(object);
+            } catch (Exception e) {
+                logger.error(e.getMessage(), e);
+            }
         }
     }
 
@@ -138,12 +153,13 @@ public abstract class RsRepositoryService<T> extends RsResponseService implement
      * D
      */
 
-    protected void preDelete(String id) throws Exception {
+    protected void preDelete(Long id) throws Exception {
     }
 
     @DELETE
-    @Path("/delete/{id}")
-    public Response delete(@PathParam("id") String id) throws Exception {
+    @Path("/{id}")
+//   @RolesAllowed({ "Admin" })
+    public Response delete(@PathParam("id") Long id) throws Exception {
         logger.info("@DELETE:" + id);
         try {
             preDelete(id);
@@ -151,7 +167,7 @@ public abstract class RsRepositoryService<T> extends RsResponseService implement
             return jsonMessageResponse(Status.BAD_REQUEST, e);
         }
         try {
-            repository.delete(repository.castId(id));
+            repository.delete(id);
             postDelete(id);
             return jsonMessageResponse(Status.NO_CONTENT, id);
         } catch (NoResultException e) {
@@ -163,7 +179,7 @@ public abstract class RsRepositoryService<T> extends RsResponseService implement
         }
     }
 
-    protected void postDelete(String id) throws Exception {
+    protected void postDelete(Long id) throws Exception {
     }
 
     /*
@@ -172,10 +188,11 @@ public abstract class RsRepositoryService<T> extends RsResponseService implement
 
     @GET
     @Path("/{id}/exist")
-    public Response exist(@PathParam("id") String id) {
+//   @RolesAllowed({ "Admin" })
+    public Response exist(@PathParam("id") Long id) {
         logger.info("@GET exist:" + id);
         try {
-            boolean exist = repository.exist(repository.castId(id));
+            boolean exist = repository.exist(id);
             if (!exist) {
                 return jsonMessageResponse(Status.NOT_FOUND, id);
             } else {
@@ -190,9 +207,6 @@ public abstract class RsRepositoryService<T> extends RsResponseService implement
     @GET
     @Path("/listSize")
     public Response getListSize(@Context UriInfo ui) {
-        // logger.info("@GET list:" + ctx.getCallerPrincipal().getName());
-        // logger.info("@GET list:" +
-        // SecurityContextAssociation.getSecurityContext().getSubjectInfo().getAuthenticatedSubject().getPrincipals());
         try {
             Search<T> search = getSearch(ui, null);
             int listSize = repository.getListSize(search);
@@ -214,18 +228,11 @@ public abstract class RsRepositoryService<T> extends RsResponseService implement
             @DefaultValue("0") @QueryParam("startRow") Integer startRow,
             @DefaultValue("10") @QueryParam("pageSize") Integer pageSize,
             @QueryParam("orderBy") String orderBy, @Context UriInfo ui) {
-        // logger.info("@GET list:" + ctx.getCallerPrincipal().getName());
-        // logger.info("@GET list:" +
-        // SecurityContextAssociation.getSecurityContext().getSubjectInfo().getAuthenticatedSubject().getPrincipals());
         try {
             Search<T> search = getSearch(ui, orderBy);
             int listSize = repository.getListSize(search);
             List<T> list = repository.getList(search, startRow, pageSize);
             postList(list);
-            // PaginatedListWrapper<T> wrapper = new PaginatedListWrapper<>();
-            // wrapper.setList(list);
-            // wrapper.setListSize(listSize);
-            // wrapper.setStartRow(startRow);
             return Response
                     .status(Status.OK)
                     .entity(list)

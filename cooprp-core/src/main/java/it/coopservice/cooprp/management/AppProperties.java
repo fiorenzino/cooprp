@@ -25,6 +25,8 @@ public enum AppProperties {
     ldapBaseTech,
 
     defaultSchema,
+    casServerLoginUrl,
+    casExcluded,
     ;
 
     Logger logger = Logger.getLogger(getClass());

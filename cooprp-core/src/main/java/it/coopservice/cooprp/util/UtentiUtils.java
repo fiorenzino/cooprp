@@ -16,7 +16,7 @@ public class UtentiUtils
 
     public static Utente createUtenteFromLdapEntry(LDAPEntry entry) {
         Utente utente = new Utente();
-        utente.setDn(entry.getDN());
+        //utente.setDn(entry.getDN());
         popolateUser(entry.getAttributeSet(), utente);
         return utente;
     }

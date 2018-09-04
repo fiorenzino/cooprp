@@ -29,7 +29,8 @@ public class LdapService implements Serializable {
                 String keystore = null;
                 LdapParameters loginParameters = new LdapParameters(AppProperties.ldapHosts.value(),
                          AppProperties.ldapPort.cast(Integer.class),
-                         utente.getDn(),
+                         //utente.getDn(),
+                         "",
                          password,
                          AppProperties.ldapWithAuth.cast(Boolean.class),
                          AppProperties.ldapWithSsl.cast(Boolean.class),
@@ -86,7 +87,8 @@ public class LdapService implements Serializable {
                 String keystore = null;
                 LdapParameters loginParameters = new LdapParameters(AppProperties.ldapHosts.value(),
                          AppProperties.ldapPort.cast(Integer.class),
-                         utente.getDn(),
+                         //utente.getDn(),
+                         "",
                          password,
                          AppProperties.ldapWithAuth.cast(Boolean.class),
                          AppProperties.ldapWithSsl.cast(Boolean.class),
