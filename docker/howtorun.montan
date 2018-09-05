@@ -1,0 +1,9 @@
+ docker stop cooprp || echo NOT_RUNNING && \
+ docker rm cooprp || echo NOT_PRESENT && \
+ mvn clean package  -Dmaven.test.skip=true && \
+ docker build -t eap70-cooprp -f docker/Dockerfile . && \
+ docker run -m=1G --net=host -v /mnt:/home/jboss  --name=cooprp eap70-cooprp
+
+
+
+
