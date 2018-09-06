@@ -28,11 +28,11 @@ public abstract class RsResponseService implements Serializable {
 
     protected final Logger logger = Logger.getLogger(getClass());
 
-    @OPTIONS
-    public Response options() {
-        logger.info("@OPTIONS");
-        return Response.ok().build();
-    }
+    //@OPTIONS
+    //public Response options() {
+    //    logger.info("@OPTIONS");
+    //    return Response.ok().build();
+    // }
 
     //    @OPTIONS
     //    @Path("{val:.}")
