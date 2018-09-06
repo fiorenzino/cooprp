@@ -1,0 +1,19 @@
+echo cd angular
+echo "ng build --watch --output-path dist"
+echo
+
+while true; do
+    read -p "ti sei ricordato? (s/n) " yn
+    case $yn in
+        [YySs]* ) echo "ok. proseguiamo."; echo; break;;
+        [Nn]* ) echo allora niente; echo; exit;;
+        * ) echo; echo "si o no?"; echo;;
+    esac
+done
+docker stop cooprp || echo NOT_RUNNING && \
+docker rm cooprp || echo NOT_PRESENT && \
+mvn clean package  -Dmaven.test.skip=true && \
+docker build -t eap70-cooprp -f docker/Dockerfile . && \
+docker run -m=1G -i --net=host \
+ -v /home/andrea/Workspace/coopservice/cooprp/angular/dist:/opt/eap/standalone/deployments/cooprp.war/private \
+ --name=cooprp eap70-cooprp
