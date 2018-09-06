@@ -4,7 +4,6 @@ import it.coopservice.cooprp.management.AppConstants;
 import it.coopservice.cooprp.model.Workshift;
 import it.coopservice.cooprp.repository.WorkshiftsRepository;
 import org.giavacms.api.service.RsRepositoryService;
-import org.giavacms.commons.auth.jwt.annotation.AccountTokenVerification;
 import org.giavacms.commons.auth.jwtcookie.annotation.AccountCookieAndTokenVerification;
 
 import javax.ejb.Stateless;
