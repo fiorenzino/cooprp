@@ -8,46 +8,38 @@ import {catchError, map} from "rxjs/internal/operators";
 @Injectable()
 export class AuthenticationService {
 
-	private url: string = AppConstants.userUrl;
-	private utente: Utente;
+    private url: string = AppConstants.userUrl;
+    private utente: Utente;
 
-	constructor(private httpClient: HttpClient) {
-		this.utente =
-			{
-				username: 'pasisa',
-				nome: 'Pasini Samuele',
-				ruoli: ['Admin'],
-				admin: true
-			}
-	}
+    constructor(private httpClient: HttpClient) {
+    }
 
-	public getUser(): Observable<Utente> {
-		return of(this.utente);
-		// if (this.utente == null) {
-		// 	return this.httpClient.get<Utente>(this.url).pipe(
-		// 		map(utente => {
-		// 			this.utente = utente;
-		// 			return this.utente;
-		// 		}),
-		// 		catchError(this.handleError)
-		// 	)
-		// } else {
-		// 	return of(this.utente);
-		// }
-	}
+    public getUser(): Observable<Utente> {
+        if (this.utente == null) {
+            return this.httpClient.get<Utente>(this.url).pipe(
+                map(utente => {
+                    this.utente = utente;
+                    return this.utente;
+                }),
+                catchError(this.handleError)
+            )
+        } else {
+            return of(this.utente);
+        }
+    }
 
-	public clearUser() {
-		this.utente = null;
-	}
+    public clearUser() {
+        this.utente = null;
+    }
 
-	private handleError(error: HttpErrorResponse): Observable<any> {
-		if (error == null) {
-			return throwError('Server error');
-		}
-		console.error(error);
-		if (error.status === 403) {
-			return throwError('Forbidden');
-		}
-		return throwError(error['error'] || 'Server error');
-	}
+    private handleError(error: HttpErrorResponse): Observable<any> {
+        if (error == null) {
+            return throwError('Server error');
+        }
+        console.error(error);
+        if (error.status === 403) {
+            return throwError('Forbidden');
+        }
+        return throwError(error['error'] || 'Server error');
+    }
 }
