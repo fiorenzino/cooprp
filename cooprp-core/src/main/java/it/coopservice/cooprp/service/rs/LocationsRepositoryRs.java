@@ -6,6 +6,7 @@ import it.coopservice.cooprp.management.AppConstants;
 import it.coopservice.cooprp.model.Location;
 import it.coopservice.cooprp.repository.LocationsRepository;
 import org.giavacms.api.service.RsRepositoryService;
+import org.giavacms.commons.auth.cookie.annotation.AccountCookieVerification;
 import org.giavacms.commons.auth.jwtcookie.annotation.AccountCookieAndTokenVerification;
 
 import javax.ejb.Stateless;
@@ -19,7 +20,7 @@ import javax.ws.rs.core.MediaType;
 @Stateless
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@AccountCookieAndTokenVerification
+@AccountCookieVerification
 public class LocationsRepositoryRs extends RsRepositoryService<Location>
 {
    public LocationsRepositoryRs()

@@ -47,14 +47,14 @@ public class I18nRepositoryRs extends RsResponseService
    }
 
    @GET
-   @Path("/{pippa}")
+   @Path("/{lang}")
    @Consumes(MediaType.APPLICATION_JSON)
    @Produces(MediaType.APPLICATION_JSON)
-   public Response getLanguageMap(@PathParam("pippa") String pippa)
+   public Response getLanguageMap(@PathParam("lang") String lang)
    {
       try
       {
-         JsonObject jo = languagesRepository.getLanguageMap(pippa);
+         JsonObject jo = languagesRepository.getLanguageMap(lang);
          return Response.ok(jo.toString()).build();
       }
       catch (Exception ex)

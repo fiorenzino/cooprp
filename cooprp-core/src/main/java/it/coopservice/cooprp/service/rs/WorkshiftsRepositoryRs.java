@@ -5,6 +5,7 @@ import it.coopservice.cooprp.model.Workshift;
 import it.coopservice.cooprp.repository.WorkshiftsRepository;
 import org.giavacms.api.service.RsRepositoryService;
 import org.giavacms.commons.auth.jwt.annotation.AccountTokenVerification;
+import org.giavacms.commons.auth.jwtcookie.annotation.AccountCookieAndTokenVerification;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -17,7 +18,7 @@ import javax.ws.rs.core.MediaType;
 @Stateless
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@AccountTokenVerification
+@AccountCookieAndTokenVerification
 public class WorkshiftsRepositoryRs extends RsRepositoryService<Workshift>
 {
    public WorkshiftsRepositoryRs() {

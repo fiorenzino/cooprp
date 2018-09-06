@@ -4,6 +4,7 @@ import it.coopservice.cooprp.management.AppConstants;
 import it.coopservice.cooprp.model.Language;
 import it.coopservice.cooprp.repository.LanguagesRepository;
 import org.giavacms.api.service.RsRepositoryService;
+import org.giavacms.commons.auth.cookie.annotation.AccountCookieVerification;
 import org.giavacms.commons.auth.jwt.annotation.AccountTokenVerification;
 
 import javax.ejb.Stateless;
@@ -15,7 +16,7 @@ import javax.ws.rs.core.MediaType;
 @Stateless
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@AccountTokenVerification
+@AccountCookieVerification
 public class LanguagesRepositoryRs extends RsRepositoryService<Language>
 {
 
