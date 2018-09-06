@@ -2,4 +2,5 @@
 <jboss-web>
     <context-root>cooprp</context-root>
     <symbolic-linking-enabled>true</symbolic-linking-enabled>
+    <security-domain>GeneralDomainCL</security-domain>
 </jboss-web>
