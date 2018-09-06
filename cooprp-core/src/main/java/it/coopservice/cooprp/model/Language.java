@@ -10,21 +10,22 @@ import java.util.Date;
 
 import static it.coopservice.cooprp.model.Language.TABLE_NAME;
 
-@Table(name = TABLE_NAME)
+@Table(name = TABLE_NAME, uniqueConstraints={@UniqueConstraint(columnNames ={"key","language"})})
 @Entity
 public class Language implements Serializable
 {
    public final static String TABLE_NAME = "crp_languages";
 
-   @EmbeddedId
-   public LanguageKey id;
+   @Id
+   @GeneratedValue(generator = "uuid")
+   @GenericGenerator(name = "uuid", strategy = "uuid2")
+   @Column(name = "uuid", unique = true)
+   public String uuid;
 
    public String value;
 
-   @Column(insertable = false, updatable = false)
    public String key;
 
-   @Column(insertable = false, updatable = false)
    public String language;
 
    @Temporal(TemporalType.TIMESTAMP)

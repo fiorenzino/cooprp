@@ -22,12 +22,13 @@ public class Location implements Serializable
    @Column(name = "uuid", unique = true)
    public String uuid;
 
+   @Transient
    public Point location;
 
-   @Transient
+//   @Transient
    public String latitudine;
 
-   @Transient
+//   @Transient
    public String longitudine;
 
    public String nome;
