@@ -3,13 +3,11 @@ import {NgModule} from "@angular/core";
 import {UserResolveGuard} from "./router-guards/user-resolve-guard";
 import {HomeComponent} from "./components/home/home.component";
 import {MainAppComponent} from "./components/main-app/main-app.component";
-import {LoginComponent} from "./components/login/login.component";
 
 export const routing: Routes = [
-	{path: '', redirectTo: 'login', pathMatch: 'full'},
-	{path: 'login', component: LoginComponent},
+	{path: '', redirectTo: 'home', pathMatch: 'full'},
 	{
-		path: 'app', component: MainAppComponent, resolve: {utente: UserResolveGuard},
+		path: '', component: MainAppComponent, resolve: {utente: UserResolveGuard},
 		children: [
 			{path: '', redirectTo: 'home', pathMatch: 'full'},
 			{path: 'home', component: HomeComponent},

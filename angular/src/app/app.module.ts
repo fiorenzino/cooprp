@@ -7,8 +7,6 @@ import {CoreModule} from "./modules/core.module";
 import {BasicHttpInterceptor} from "./services/http-interceptors/basic-http-interceptor";
 import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MainHeaderComponent} from "./shared/main-header/main-header.component";
-import {MainFooterComponent} from "./shared/main-footer/main-footer.component";
 import {HomeComponent} from "./components/home/home.component";
 import {TableModule} from "primeng/table";
 import {CalendarModule} from "primeng/primeng";
@@ -18,8 +16,6 @@ import {MainAppComponent} from "./components/main-app/main-app.component";
 	declarations: [
 		AppComponent,
 		MainAppComponent,
-		MainHeaderComponent,
-		MainFooterComponent,
 		HomeComponent,
 	],
 	imports: [
