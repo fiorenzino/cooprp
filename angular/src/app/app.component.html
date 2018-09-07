@@ -1,1 +1,25 @@
-<router-outlet></router-outlet>
+<div class="layout-wrapper" [ngClass]="{'layout-compact':layoutCompact}">
+
+
+
+        <app-topbar></app-topbar>
+
+        <div class="layout-menu" [ngClass]="{'layout-menu-dark':darkMenu}" (click)="onMenuClick($event)">
+            <div #layoutMenuScroller class="nano">
+                <div class="nano-content menu-scroll-content">
+                    <inline-profile *ngIf="profileMode=='inline'&&!isHorizontal()" [utente]="utente"></inline-profile>
+                    <app-menu [reset]="resetMenu"></app-menu>
+                </div>
+            </div>
+        </div>
+
+        <div class="layout-main">
+            <div class="ui-g-12 ui-g-nopad" style="min-height: calc(100vh - 137px);">
+                <router-outlet></router-outlet>
+            </div>
+            <div class="ui-g-12 ui-g-nopad">
+                <app-footer></app-footer>
+            </div>
+        </div>
+
+</div>

@@ -11,12 +11,22 @@ import {HomeComponent} from "./components/home/home.component";
 import {TableModule} from "primeng/table";
 import {CalendarModule} from "primeng/primeng";
 import {MainAppComponent} from "./components/main-app/main-app.component";
+import {InlineProfileComponent} from "./app.profile.component";
+import {AppTopBar} from "./app.topbar.component";
+import {AppFooter} from "./app.footer.component";
+import {AppMenuComponent, AppSubMenu} from "./app.menu.component";
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		MainAppComponent,
 		HomeComponent,
+        AppTopBar,
+        AppFooter,
+		InlineProfileComponent,
+        AppMenuComponent,
+        AppSubMenu,
+
 	],
 	imports: [
 		BrowserModule,
