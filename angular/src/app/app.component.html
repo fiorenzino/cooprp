@@ -1,6 +1,12 @@
 <div class="layout-wrapper" [ngClass]="{'layout-compact':layoutCompact}">
 
-
+    <div #layoutContainer class="layout-container"
+         [ngClass]="{'menu-layout-static': !isOverlay(),
+            'menu-layout-overlay': isOverlay(),
+            'layout-menu-overlay-active': overlayMenuActive,
+            'menu-layout-horizontal': isHorizontal(),
+            'layout-menu-static-inactive': staticMenuDesktopInactive,
+            'layout-menu-static-active': staticMenuMobileActive}">
 
         <app-topbar></app-topbar>
 
@@ -21,5 +27,6 @@
                 <app-footer></app-footer>
             </div>
         </div>
+    </div>
 
 </div>

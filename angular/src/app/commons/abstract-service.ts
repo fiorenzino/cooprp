@@ -1,7 +1,8 @@
-import { Observable } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import 'rxjs/operator/catch';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
-import {Search} from "../commons/models/search";
+import {Search} from './models/search';
+import {catchError, map} from 'rxjs/operators';
+import {Observable} from "rxjs";
 
 export abstract class AbstractService<T> {
 
@@ -74,7 +75,7 @@ export abstract class AbstractService<T> {
             prefix = prefix + '.';
         }
         for (const key in search) {
-            if (search[key] !== null) {
+            if (search[key] !== undefined && search[key] !== null ) {
                 if (!(search[key] instanceof Object)) {
                     params = params.set(prefix + key, this.toQueryParam(prefix + key, search[key]));
                 } else if (search[key] instanceof Date) {
@@ -95,11 +96,10 @@ export abstract class AbstractService<T> {
     }
 
     public find(id: string): Observable<T> {
-        return this.http.get<T>(this.url + '/' + id)
-            .pipe(catchError(this.handleError));
+        return this.http.get<T>(this.url + '/' + id);
     }
 
-    public newInstance(type: { new (): T; }): T {
+    public newInstance(type: { new(): T; }): T {
         return new type();
     }
 
@@ -119,14 +119,15 @@ export abstract class AbstractService<T> {
     }
 
     public handleError(error: HttpErrorResponse): Observable<any> {
-        console.error(error);
         if (error.status === 401) {
             return Observable.throw({status: error.status, error: 'Unauthorized'});
+        } else if (error.status === 500) {
+            return Observable.throw({status: error.status, error: error.message  || error.error});
         }
         return Observable.throw(error.message /*json().msg*/ || error.error /*json().error*/ || 'Server error');
     }
 
-    public getInstance(TCreator: { new (): T; }): T {
+    public getInstance(TCreator: { new(): T; }): T {
         return new TCreator();
     }
 

@@ -1,6 +1,6 @@
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
 import {Injectable} from "@angular/core";
-import {Observable} from "rxjs/index";
+import {Observable} from "rxjs";
 import {map, take} from "rxjs/internal/operators";
 import {Utente} from "../commons/models/utente";
 import {AuthenticationService} from "../services/authentication.service";

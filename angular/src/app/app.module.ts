@@ -9,12 +9,31 @@ import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HomeComponent} from "./components/home/home.component";
 import {TableModule} from "primeng/table";
-import {CalendarModule} from "primeng/primeng";
+import {
+    ButtonModule,
+    CalendarModule, CheckboxModule,
+    ConfirmDialogModule, DataScrollerModule,
+    DialogModule,
+    DropdownModule,
+    GrowlModule,
+    InputSwitchModule,
+    InputTextareaModule,
+    InputTextModule,
+    MessagesModule, OverlayPanelModule,
+    PanelModule, ProgressBarModule,
+    ProgressSpinnerModule, SelectButtonModule, SharedModule,
+    SpinnerModule,
+    TabViewModule, ToggleButtonModule
+} from "primeng/primeng";
 import {MainAppComponent} from "./components/main-app/main-app.component";
 import {InlineProfileComponent} from "./app.profile.component";
 import {AppTopBar} from "./app.topbar.component";
 import {AppFooter} from "./app.footer.component";
 import {AppMenuComponent, AppSubMenu} from "./app.menu.component";
+import {LanguagesListComponent} from "./components/languages/languages-list.component";
+import {LanguagesService} from "./services/languages.service";
+import {LanguagesEditComponent} from "./components/languages/languages-edit.component";
+import {LanguagesComponent} from "./components/languages/languages.component";
 
 @NgModule({
 	declarations: [
@@ -27,6 +46,10 @@ import {AppMenuComponent, AppSubMenu} from "./app.menu.component";
         AppMenuComponent,
         AppSubMenu,
 
+
+        LanguagesListComponent,
+        LanguagesEditComponent,
+        LanguagesComponent
 	],
 	imports: [
 		BrowserModule,
@@ -35,14 +58,39 @@ import {AppMenuComponent, AppSubMenu} from "./app.menu.component";
 		AppRoutingModule,
 		CoreModule.forRoot(),
 		TableModule,
-		CalendarModule
+		CalendarModule,
+
+        SpinnerModule,
+        ProgressSpinnerModule,
+        MessagesModule,
+        CalendarModule,
+        ConfirmDialogModule,
+        DropdownModule,
+        InputTextModule,
+        InputTextareaModule,
+        SharedModule,
+        TableModule,
+        DialogModule,
+        GrowlModule,
+        PanelModule,
+        TabViewModule,
+        InputSwitchModule,
+        ButtonModule,
+        ProgressBarModule,
+        DataScrollerModule,
+        CheckboxModule,
+        OverlayPanelModule,
+        SelectButtonModule,
+        ToggleButtonModule
 	],
 	providers: [
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: BasicHttpInterceptor,
 			multi: true
-		}
+		},
+		LanguagesService
+
 	],
 	entryComponents: [
 	],

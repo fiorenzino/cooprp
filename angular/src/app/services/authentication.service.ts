@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, of, throwError} from "rxjs/index";
+import {Observable, of, throwError} from "rxjs";
 import {Utente} from "../commons/models/utente";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {AppConstants} from "../constants/app-constants";

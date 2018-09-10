@@ -6,4 +6,5 @@ export class AppConstants {
 	public static userUrl: string = APP_NAME + 'user';
 	public static freePageUrl: string = APP_NAME + 'freepage';
 
+
 }
