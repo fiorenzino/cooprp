@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {Language} from "../../modules/language";
+import {Language} from "../../models/language";
 import {AbstractEditComponent} from "../../commons/abstract-edit-component";
 import {ActivatedRoute, Router} from "@angular/router";
 import {LanguagesService} from "../../services/languages.service";

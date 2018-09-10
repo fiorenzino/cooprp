@@ -1,25 +1,25 @@
 import {AbstractService} from "../commons/abstract-service";
-import {Language} from "../models/language";
 import {Search} from "../commons/models/search";
 import {HttpClient} from "@angular/common/http";
-import {LANGUAGES_URL} from "../constants/constants";
+import {LOCATIONS_URL} from "../constants/constants";
 import {Injectable} from "@angular/core";
+import {Location} from "../models/location";
 
 @Injectable()
-export class LanguagesService extends AbstractService<Language> {
+export class LocationsService extends AbstractService<Location> {
 
     constructor(protected http: HttpClient) {
-        super(LANGUAGES_URL, http);
+        super(LOCATIONS_URL, http);
     }
 
     buildSearch() {
-        let search = new Search<Language>(Language);
+        let search = new Search<Location>(Location);
         search.pageSize = 10;
         this.search = search;
         return search;
     }
 
-    getId(element: Language) {
+    getId(element: Location) {
         return element.uuid;
     }
 

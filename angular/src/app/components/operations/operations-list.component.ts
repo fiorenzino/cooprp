@@ -7,7 +7,7 @@ import {LanguagesService} from "../../services/languages.service";
 @Component({
     templateUrl: './languages-list.component.html',
 })
-export class LanguagesListComponent extends AbstractListComponent<Language> implements OnInit {
+export class OperationsListComponent extends AbstractListComponent<Language> implements OnInit {
 
     constructor(protected router: Router, public service: LanguagesService) {
         super (router, service);

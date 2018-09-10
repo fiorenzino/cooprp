@@ -34,6 +34,21 @@ import {LanguagesListComponent} from "./components/languages/languages-list.comp
 import {LanguagesService} from "./services/languages.service";
 import {LanguagesEditComponent} from "./components/languages/languages-edit.component";
 import {LanguagesComponent} from "./components/languages/languages.component";
+import {WorkshiftsService} from "./services/workshifts.service";
+import {OperationsService} from "./services/operations.service";
+import {NotificationsService} from "./services/notifications.service";
+import {CompanyConfigurationsService} from "./services/companyConfigurations.service";
+import {LocationsService} from "./services/locations.service";
+import {CompanyConfigurationsListComponent} from "./components/companyconfigurations/companyConfigurations-list.component";
+import {CompanyConfigurationsComponent} from "./components/companyconfigurations/companyConfigurations.component";
+import {LocationsListComponent} from "./components/locations/locations-list.component";
+import {LocationsComponent} from "./components/locations/locations.component";
+import {OperationsListComponent} from "./components/operations/operations-list.component";
+import {WorkshiftsListComponent} from "./components/workshifts/workshifts-list.component";
+import {WorkshiftsComponent} from "./components/workshifts/workshifts.component";
+import {OperationsComponent} from "./components/operations/operations.component";
+import {NotificationsListComponent} from "./components/notifications/notifications-list.component";
+import {NotificationsComponent} from "./components/notifications/notifications.component";
 
 @NgModule({
 	declarations: [
@@ -47,9 +62,24 @@ import {LanguagesComponent} from "./components/languages/languages.component";
         AppSubMenu,
 
 
+        CompanyConfigurationsListComponent,
+        CompanyConfigurationsComponent,
+
         LanguagesListComponent,
         LanguagesEditComponent,
-        LanguagesComponent
+        LanguagesComponent,
+
+        LocationsListComponent,
+        LocationsComponent,
+
+        OperationsListComponent,
+        OperationsComponent,
+
+        NotificationsListComponent,
+        NotificationsComponent,
+
+        WorkshiftsListComponent,
+        WorkshiftsComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -89,8 +119,12 @@ import {LanguagesComponent} from "./components/languages/languages.component";
 			useClass: BasicHttpInterceptor,
 			multi: true
 		},
-		LanguagesService
-
+        CompanyConfigurationsService,
+        LanguagesService,
+        LocationsService,
+        NotificationsService,
+        OperationsService,
+        WorkshiftsService
 	],
 	entryComponents: [
 	],
