@@ -57,7 +57,7 @@ public class JWTUtils
    {
       HashMap<String, Object> claims = new HashMap<String, Object>();
       claims.put(USERNAME, username);
-      claims.put(NAME, nome);
+      //claims.put(NAME, nome);
       claims.put(ROLES, ruoli.toArray());
 
       JWTSigner signer = new JWTSigner(secret);
