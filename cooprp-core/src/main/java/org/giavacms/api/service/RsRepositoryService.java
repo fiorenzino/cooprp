@@ -118,7 +118,7 @@ public abstract class RsRepositoryService<T> extends RsResponseService implement
     @PUT
     @Path("/{id}")
 //   @RolesAllowed({ "Admin" })
-    public Response update(@PathParam("id") Long id, T object) throws Exception {
+    public Response update(@PathParam("id") String id, T object) throws Exception {
         logger.info("@PUT update:" + object.toString());
         try {
             object = preUpdate(object);
@@ -153,13 +153,13 @@ public abstract class RsRepositoryService<T> extends RsResponseService implement
      * D
      */
 
-    protected void preDelete(Long id) throws Exception {
+    protected void preDelete(String id) throws Exception {
     }
 
     @DELETE
     @Path("/{id}")
 //   @RolesAllowed({ "Admin" })
-    public Response delete(@PathParam("id") Long id) throws Exception {
+    public Response delete(@PathParam("id") String id) throws Exception {
         logger.info("@DELETE:" + id);
         try {
             preDelete(id);
@@ -179,7 +179,7 @@ public abstract class RsRepositoryService<T> extends RsResponseService implement
         }
     }
 
-    protected void postDelete(Long id) throws Exception {
+    protected void postDelete(String id) throws Exception {
     }
 
     /*

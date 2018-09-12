@@ -16,7 +16,7 @@ public class LocationsRepository extends BaseRepository<Location>
             StringBuffer sb,
             Map<String, Object> params) throws Exception
    {
-
+      super.applyRestrictions(search, alias, separator, sb, params);
    }
 }
 

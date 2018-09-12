@@ -32,7 +32,6 @@ import {AppFooter} from "./app.footer.component";
 import {AppMenuComponent, AppSubMenu} from "./app.menu.component";
 import {LanguagesListComponent} from "./components/languages/languages-list.component";
 import {LanguagesService} from "./services/languages.service";
-import {LanguagesEditComponent} from "./components/languages/languages-edit.component";
 import {LanguagesComponent} from "./components/languages/languages.component";
 import {WorkshiftsService} from "./services/workshifts.service";
 import {OperationsService} from "./services/operations.service";
@@ -66,7 +65,6 @@ import {NotificationsComponent} from "./components/notifications/notifications.c
         CompanyConfigurationsComponent,
 
         LanguagesListComponent,
-        LanguagesEditComponent,
         LanguagesComponent,
 
         LocationsListComponent,

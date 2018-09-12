@@ -24,6 +24,7 @@
             ],
             "styles": [
               "./node_modules/primeng/resources/primeng.min.css",
+              "./node_modules/primeicons/primeicons.css",
               "./node_modules/nanoscroller/bin/css/nanoscroller.css",
               "src/assets/css/theme-blue.css",
               "src/assets/layout/css/layout-blue.css",

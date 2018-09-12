@@ -16,6 +16,7 @@ public class CompanyConfigurationsRepository extends BaseRepository<CompanyConfi
              StringBuffer sb,
              Map<String, Object> params) throws Exception
     {
+        super.applyRestrictions(search, alias, separator, sb, params);
 
     }
 

@@ -24,7 +24,7 @@ public class LanguagesRepository extends BaseRepository<Language>
             StringBuffer sb,
             Map<String, Object> params) throws Exception
    {
-
+      super.applyRestrictions(search, alias, separator, sb, params);
    }
 
    @Override protected Language prePersist(Language object) throws Exception
