@@ -10,7 +10,7 @@ import {NotificationsService} from "../../services/notifications.service";
 export class NotificationsListComponent extends AbstractListComponent<Notification> implements OnInit {
 
     constructor(protected router: Router, public service: NotificationsService) {
-        super (router, service);
+        super(router, service);
     }
 
 
@@ -20,7 +20,7 @@ export class NotificationsListComponent extends AbstractListComponent<Notificati
     }
 
     getId() {
-       return "uuid";
+        return this.element.uuid;
     }
 
     toRec(obj: any): Notification {

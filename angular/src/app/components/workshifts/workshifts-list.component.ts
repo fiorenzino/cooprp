@@ -10,7 +10,7 @@ import {WorkshiftsService} from "../../services/workshifts.service";
 export class WorkshiftsListComponent extends AbstractListComponent<Workshift> implements OnInit {
 
     constructor(protected router: Router, public service: WorkshiftsService) {
-        super (router, service);
+        super(router, service);
     }
 
 
@@ -20,7 +20,7 @@ export class WorkshiftsListComponent extends AbstractListComponent<Workshift> im
     }
 
     getId() {
-       return "uuid";
+        return this.element.uuid;
     }
 
     toRec(obj: any): Workshift {

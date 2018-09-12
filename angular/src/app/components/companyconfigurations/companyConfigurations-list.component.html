@@ -1,18 +1,226 @@
 <p-messages [(value)]="msgs" closable="false"></p-messages>
 
 <div class="ui-g">
+    <p-confirmDialog header="Conferma" icon="fa fa-question-circle" acceptLabel="Sì" rejectLabel="No"
+                     #cd></p-confirmDialog>
     <div class="ui-g-12">
         <div class="card" style="margin-bottom: 0px !important; min-height: calc(100vh - 152px)">
-            <div class="ui-g">
-                <div class="ui-g-12">
+            <div class="ui-g-12">
 
-                    <div class="EmptyBox10"></div>
-                    <div class="ui-g-12 TexAlCenter">
-                        <button type="button" pButton icon="ui-icon-refresh" label="Aggiorna"
-                                (click)="refresh(table)"></button>
+
+                <div class="ui-g-4 ui-g-nopad">
+                    <div class="ui-g-12 ui-g-nopad">
+                        <div class="ui-g-3 TexAlRight FontBold">
+                            <label>Nome</label>
+                        </div>
+                        <div class="ui-g-9">
+                            <input class="Wid90" pInputText type="text" [(ngModel)]="service.search.like.nome">
+                        </div>
                     </div>
                 </div>
+
             </div>
+            <div class="ui-g-12 TexAlCenter">
+                <button type="button" pButton icon="pi pi-search" label="Cerca"
+                        (click)="reload(table)"></button>
+            </div>
+            <div class="ui-g-12">
+                <p-table [value]="model" [lazy]="true" (onLazyLoad)="lazyLoad($event)" [paginator]="true"
+                         [responsive]="true" [rows]="service.search.pageSize"
+                         [totalRecords]="service.listSize" [resizableColumns]="true" #table>
+                    <tr>
+                        <td [attr.colspan]="8">
+                            Nessun risultato.
+                        </td>
+                    </tr>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td [attr.colspan]="8">
+                                Nessun risultato.
+                            </td>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="header" let-columns>
+                        <tr class="TexBold">
+                            <th class="FontBold" style="background-color: aliceblue !important;">Indice
+                            </th>
+                            <th [pSortableColumn]="'uuid'" pResizableColumn class="FontBold"
+                                style="background-color: aliceblue !important;">Uuid
+                                <p-sortIcon [field]="'uuid'"></p-sortIcon>
+                            </th>
+                            <th [pSortableColumn]="'nome'" pResizableColumn class="FontBold"
+                                style="background-color: aliceblue !important;">Nome
+                                <p-sortIcon [field]="'nome'"></p-sortIcon>
+                            </th>
+                            <th pResizableColumn class="FontBold"
+                                style="background-color: aliceblue !important;">Mail
+                            </th>
+                            <th [pSortableColumn]="'retentionPeriod'" pResizableColumn class="FontBold"
+                                style="background-color: aliceblue !important;">Retention Period
+                                <p-sortIcon [field]="'retentionPeriod'"></p-sortIcon>
+                            </th>
+                            <th pResizableColumn class="FontBold"
+                                style="background-color: aliceblue !important;">Web Services
+                            </th>
+                            <th pResizableColumn class="FontBold"
+                                style="background-color: aliceblue !important;">Tolleranza (minuti)
+                            </th>
+                            <th pResizableColumn class="FontBold"
+                                style="background-color: aliceblue !important;">Operazioni
+                            </th>
+                        </tr>
+
+
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+                        <tr>
+                            <td class="RowIndex">{{ rowIndex + 1 }}</td>
+                            <td class="ui-resizable-column">{{rowData.uuid}}</td>
+
+                            <td class="ui-resizable-column" *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                                {{rowData.nome}}
+                            </td>
+                            <td class="ui-resizable-column" *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.nome">
+                            </td>
+                            <td class="ui-resizable-column" *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                                {{rowData.mail}}
+                            </td>
+                            <td class="ui-resizable-column" *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.mail">
+                            </td>
+                            <td class="ui-resizable-column" *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                                {{rowData.retentionPeriod}}
+                            </td>
+                            <td class="ui-resizable-column" *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                <input class="Wid100" pInputText type="number" [(ngModel)]="elementToEdit.retentionPeriod">
+                            </td>
+                            <td class="ui-resizable-column" *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                                {{rowData.wsOperazioni}}
+                                <br/>
+                                {{rowData.wsTurni}}
+                            </td>
+                            <td class="ui-resizable-column" *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.wsOperazioni">
+                                <br/>
+                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.wsTurni">
+                            </td>
+                            <td class="ui-resizable-column" *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                                {{rowData.tolleranzaMinuti}}
+                            </td>
+                            <td class="ui-resizable-column" *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.tolleranzaMinuti">
+                            </td>
+
+                            <td class="Operations" *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                                <button type="button" pButton (click)="confirmDelete(rowData)"
+                                        icon="pi pi-trash"></button>
+                                <button type="button" pButton (click)="editInline(rowData)"
+                                        icon="pi pi-pencil"></button>
+                            </td>
+                            <td class="Operations" *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                <button type="button" pButton (click)="update(rowData)"
+                                        icon="pi pi-check"></button>
+                                <button type="button" pButton (click)="cancelEdit()"
+                                        icon="pi pi-times"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+            <div class="EmptyBox10"></div>
+
+            <div class="ui-g-12">
+
+
+                <div class="ui-g-6 ui-g-nopad">
+                    <div class="ui-g-12 ui-g-nopad">
+                        <div class="ui-g-3 TexAlRight FontBold">
+                            <label>Nome</label>
+                        </div>
+                        <div class="ui-g-9">
+                            <input class="Wid90" pInputText type="text" [(ngModel)]="element.nome">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui-g-6 ui-g-nopad">
+                    <div class="ui-g-12 ui-g-nopad">
+                        <div class="ui-g-3 TexAlRight FontBold">
+                            <label>Mail</label>
+                        </div>
+                        <div class="ui-g-9">
+                            <input class="Wid100" pInputText type="text" [(ngModel)]="element.mail">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="ui-g-12">
+
+
+                <div class="ui-g-6 ui-g-nopad">
+                    <div class="ui-g-12 ui-g-nopad">
+                        <div class="ui-g-3 TexAlRight FontBold">
+                            <label>Lingua</label>
+                        </div>
+                        <div class="ui-g-9">
+                            <input class="Wid90" pInputText type="number" [(ngModel)]="element.retentionPeriod">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui-g-6 ui-g-nopad">
+                    <div class="ui-g-12 ui-g-nopad">
+                        <div class="ui-g-3 TexAlRight FontBold">
+                            <label>Chiave</label>
+                        </div>
+                        <div class="ui-g-9">
+                            <input class="Wid100" pInputText type="number" [(ngModel)]="element.tolleranzaMinuti">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="ui-g-12">
+
+
+                <div class="ui-g-6 ui-g-nopad">
+                    <div class="ui-g-12 ui-g-nopad">
+                        <div class="ui-g-3 TexAlRight FontBold">
+                            <label>Ws Operazioni</label>
+                        </div>
+                        <div class="ui-g-9">
+                            <input class="Wid90" pInputText type="text" [(ngModel)]="element.wsOperazioni">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui-g-6 ui-g-nopad">
+                    <div class="ui-g-12 ui-g-nopad">
+                        <div class="ui-g-3 TexAlRight FontBold">
+                            <label>WS Turni</label>
+                        </div>
+                        <div class="ui-g-9">
+                            <input class="Wid100" pInputText type="text" [(ngModel)]="element.wsTurni">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="ui-g-5 TexAlRight">
+                <button type="button" pButton icon="pi pi-save"  label="Salva"
+                        (click)="save()"></button>
+            </div>
+            <div class="ui-g-2 TexAlCenter">
+
+            </div>
+            <div class="ui-g-5 TexAlLeft">
+                <button type="button" pButton icon="pi pi-times" label="Annulla"
+                        (click)="undo()"></button>
+            </div>
+
         </div>
     </div>
 </div>

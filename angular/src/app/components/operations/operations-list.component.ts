@@ -1,15 +1,15 @@
 import {Component, OnInit} from "@angular/core";
 import {AbstractListComponent} from "../../commons/abstract-list-component";
-import {Language} from "../../models/language";
+import {Operation} from "../../models/operation";
 import {Router} from "@angular/router";
-import {LanguagesService} from "../../services/languages.service";
+import {OperationsService} from "../../services/operations.service";
 
 @Component({
-    templateUrl: './languages-list.component.html',
+    templateUrl: './operations-list.component.html',
 })
-export class OperationsListComponent extends AbstractListComponent<Language> implements OnInit {
+export class OperationsListComponent extends AbstractListComponent<Operation> implements OnInit {
 
-    constructor(protected router: Router, public service: LanguagesService) {
+    constructor(protected router: Router, public service: OperationsService) {
         super (router, service);
     }
 
@@ -20,21 +20,21 @@ export class OperationsListComponent extends AbstractListComponent<Language> imp
     }
 
     getId() {
-       return "uuid";
+       return this.element.uuid;
     }
 
-    toRec(obj: any): Language {
+    toRec(obj: any): Operation {
         return obj;
     }
 
-    public view(element: Language) {
+    public view(element: Operation) {
         this.element = element;
-        this.router.navigate(['/languages/view', this.getId()]);
+        this.router.navigate(['/operations/view', this.getId()]);
     }
 
-    public edit(element: Language) {
+    public edit(element: Operation) {
         this.element = element;
-        this.router.navigate(['/languages/edit', this.getId()]);
+        this.router.navigate(['/operations/edit', this.getId()]);
     }
 
 }
