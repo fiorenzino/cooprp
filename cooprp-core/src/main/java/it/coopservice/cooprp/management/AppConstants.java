@@ -8,7 +8,7 @@ public class AppConstants {
     public static final String SEPARATOR = "_";
 
     public static final String IDENTITY_PATH = "/v1/identity";
-    public static final String OPERAZIONI_PATH = "/v1/operazioni";
+    public static final String OPERAZIONI_PATH = "/v1/operations";
     public static final String LOCATIONS_PATH = "/v1/locations";
     public static final String NOTIFICATIONS_PATH = "/v1/notifications";
     public static final String WORKSHIFTS_PATH = "/v1/workshifts";

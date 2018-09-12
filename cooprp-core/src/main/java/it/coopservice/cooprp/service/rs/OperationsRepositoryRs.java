@@ -7,6 +7,7 @@ import org.giavacms.api.service.RsRepositoryService;
 import org.giavacms.commons.auth.jwtcookie.annotation.AccountCookieAndTokenVerification;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -25,6 +26,7 @@ public class OperationsRepositoryRs extends RsRepositoryService<Operation>
 
    }
 
+   @Inject
    public OperationsRepositoryRs(OperationsRepository operationsRepository)
    {
       super(operationsRepository);
