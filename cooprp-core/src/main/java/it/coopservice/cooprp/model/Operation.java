@@ -38,6 +38,12 @@ public class Operation implements Serializable
    public Location location;
    public String location_uuid;
 
+   @JsonIgnore
+   @ManyToOne
+   @JoinColumn(name = "companyConfiguration_uuid", insertable = false, updatable = false)
+   public CompanyConfiguration companyConfiguration;
+   public String companyConfiguration_uuid;
+
    public String dataOra;
 
    @Temporal(TemporalType.TIMESTAMP)

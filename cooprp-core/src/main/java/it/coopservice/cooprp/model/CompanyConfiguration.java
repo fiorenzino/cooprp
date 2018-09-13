@@ -2,6 +2,7 @@ package it.coopservice.cooprp.model;
 
 //tab_operatori
 
+import it.coopservice.cooprp.model.pojo.Societa;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -29,6 +30,10 @@ public class CompanyConfiguration implements Serializable
    public String wsTurni;
    public Long tolleranzaMinuti;
 
+   public String societaId;
+
+   @Transient
+   public Societa societa;
    public CompanyConfiguration()
    {
    }

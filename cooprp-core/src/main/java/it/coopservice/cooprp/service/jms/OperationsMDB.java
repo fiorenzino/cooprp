@@ -14,25 +14,29 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 
 @MessageDriven(name = "OperationsMDB", activationConfig = {
-        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
-        @ActivationConfigProperty(propertyName = "destination", propertyValue = AppConstants.OPERATIONS_QUEUE),
-        @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
-        @ActivationConfigProperty(propertyName = "maxSession", propertyValue = "5"),
-        @ActivationConfigProperty(propertyName = "transactionTimeout", propertyValue = "14400"),
-        @ActivationConfigProperty(propertyName = "dLQMaxResent", propertyValue = "0")})
+         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
+         @ActivationConfigProperty(propertyName = "destination", propertyValue = AppConstants.OPERATIONS_QUEUE),
+         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
+         @ActivationConfigProperty(propertyName = "maxSession", propertyValue = "5"),
+         @ActivationConfigProperty(propertyName = "transactionTimeout", propertyValue = "14400"),
+         @ActivationConfigProperty(propertyName = "dLQMaxResent", propertyValue = "0") })
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-@Interceptors({TracerInterceptor.class})
-public class OperationsMDB implements MessageListener {
-    Logger logger = Logger.getLogger(getClass());
+@Interceptors({ TracerInterceptor.class })
+public class OperationsMDB implements MessageListener
+{
+   Logger logger = Logger.getLogger(getClass());
 
-    @Override
-    public void onMessage(Message message) {
-        MapMessage msg = (MapMessage) message;
-        String idditta = null;
-        Long from = null;
-        Long to = null;
+   @Override
+   public void onMessage(Message message)
+   {
+      MapMessage msg = (MapMessage) message;
+      String idditta = null;
+      Long from = null;
+      Long to = null;
 
 
-    }
+
+
+   }
 
 }

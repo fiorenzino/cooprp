@@ -1,5 +1,7 @@
 package org.giavacms.commons.model.pojo;
 
+import it.coopservice.cooprp.model.pojo.Societa;
+
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,6 +19,9 @@ public class Utente implements Serializable
    private String cognome;
    private List<String> ruoli;
    private String email;
+   public String matricola;
+
+   public List<Societa> societa;
    private Map<String, String> attributi;
 
    public List<String> getRuoli()
