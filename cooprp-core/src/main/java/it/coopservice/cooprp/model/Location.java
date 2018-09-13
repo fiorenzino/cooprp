@@ -22,6 +22,7 @@ public class Location implements Serializable
    @Column(name = "uuid", unique = true)
    public String uuid;
 
+   @Transient
    public Point location;
 
 //   @Transient
@@ -39,7 +40,7 @@ public class Location implements Serializable
    public String cantiere;
    public String commessa;
 
-   public String societa_uuid;
+   public String societaId;
 
    public String mail;
 
