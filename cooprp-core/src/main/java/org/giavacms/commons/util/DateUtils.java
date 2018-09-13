@@ -25,7 +25,7 @@ public class DateUtils {
         return date;
     }
 
-    public static Date getDateFromStringAndTimezome(String dateString,
+    public static Date getDateFromStringAndTimezone(String dateString,
                                                     String timezone) throws Exception {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         TimeZone timeZone = TimeZone.getTimeZone(timezone);

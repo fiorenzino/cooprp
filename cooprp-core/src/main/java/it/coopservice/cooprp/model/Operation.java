@@ -38,9 +38,10 @@ public class Operation implements Serializable
    public Location location;
    public String location_uuid;
 
+   public String dataOra;
+
    @Temporal(TemporalType.TIMESTAMP)
-   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm", timezone = "Europe/Rome")
-   public Date dataOra;
+   public Date realDate;
 
    public String codiceFiscale;
    public String latitudine;
@@ -53,6 +54,8 @@ public class Operation implements Serializable
    @Temporal(TemporalType.DATE)
    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Europe/Rome")
    public Date dataNotifica;
+
+   public String timezone;
 
    public Operation()
    {

@@ -188,6 +188,30 @@
                     </validation>
                 </datasource>
 
+                <datasource jta="true" jndi-name="java:jboss/datasources/CoopRPLocalDS"
+                            pool-name="CoopRPLocalDS_Pool" enabled="true" use-java-context="true"
+                            use-ccm="true">
+                    <connection-url>jdbc:postgresql://localhost:5432/template1</connection-url>
+                    <driver>postgresql</driver>
+                    <transaction-isolation>TRANSACTION_READ_COMMITTED</transaction-isolation>
+                    <pool>
+                        <min-pool-size>10</min-pool-size>
+                        <max-pool-size>100</max-pool-size>
+                    </pool>
+                    <security>
+                        <user-name>postgres</user-name>
+                        <password>pgadmin</password>
+                    </security>
+                    <validation>
+                        <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker"/>
+                        <check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+                        <validate-on-match>true</validate-on-match>
+                        <background-validation>false</background-validation>
+                        <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter"/>
+                    </validation>
+                </datasource>
+
+
                 <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true">
                     <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
                     <driver>h2</driver>

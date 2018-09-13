@@ -10,4 +10,6 @@ export class Operation {
     dataRicezione: string;
     dataNotifica: string;
 
+    timezone: string;
+    realDate: number;
 }

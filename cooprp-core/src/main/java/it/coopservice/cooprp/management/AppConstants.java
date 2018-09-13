@@ -19,8 +19,11 @@ public class AppConstants {
     public static final String I18N_PATH = "/v1/i18n";
 
     public static final String LOGIN_PATH = "/v1/login";
-    public static final String OPERATIONS_QUEUE = "operations_queue";
 
+    public static final String OPERATIONS_QUEUE = "operations_queue";
+    public static final String DEFAULT_TIMEZONE = "Europe/Rome";
+
+    public static final String ISO_FORMATTER = "yyyy-MM-dd'T'HH:mm:ss";
 
     public AppConstants() {
     }

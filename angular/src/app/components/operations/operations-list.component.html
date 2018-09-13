@@ -76,6 +76,13 @@
                         <tr>
                             <td class="RowIndex">{{ rowIndex + 1 }}</td>
                             <td class="ui-resizable-column">{{rowData.uuid}}</td>
+                            <td class="ui-resizable-column">
+                                {{rowData.dataOra}}
+                                <br/>
+                                {{rowData.timezone}}
+                                <br/>
+                                {{rowData.realDate}}
+                            </td>
                             <td class="ui-resizable-column">{{rowData.operationStatus}}</td>
                             <td class="ui-resizable-column">{{rowData.operationType}}</td>
 
