@@ -22,7 +22,6 @@ public class Location implements Serializable
    @Column(name = "uuid", unique = true)
    public String uuid;
 
-   @Transient
    public Point location;
 
 //   @Transient
