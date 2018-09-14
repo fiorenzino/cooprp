@@ -1,10 +1,11 @@
 package it.coopservice.cooprp.service.rs;
 
 import it.coopservice.cooprp.management.AppConstants;
-import it.coopservice.cooprp.model.CompanyConfiguration;
 import it.coopservice.cooprp.model.Operation;
 import it.coopservice.cooprp.repository.CompanyConfigurationsRepository;
 import it.coopservice.cooprp.repository.OperationsRepository;
+import it.coopservice.cooprp.service.jms.MessageServiceSendToMDB;
+import it.coopservice.cooprp.service.jms.OperationsMDB;
 import org.giavacms.api.service.RsRepositoryService;
 import org.giavacms.commons.auth.jwtcookie.annotation.AccountCookieAndTokenVerification;
 import org.giavacms.commons.util.DateUtils;
@@ -38,6 +39,8 @@ public class OperationsRepositoryRs extends RsRepositoryService<Operation>
    }
 
    @Inject CompanyConfigurationsRepository companyConfigurationsRepository;
+
+   @Inject MessageServiceSendToMDB messageServiceSendToMDB;
 
    @Override protected void prePersist(Operation object) throws Exception
    {
@@ -81,5 +84,10 @@ public class OperationsRepositoryRs extends RsRepositoryService<Operation>
          throw new Exception("Occorre specificare la societa'");
       }
       object.companyConfiguration_uuid = companyConfigurationsRepository.findBySocietaId(object.societaId);
+   }
+
+   @Override protected void postPersist(Operation object) throws Exception
+   {
+      messageServiceSendToMDB.sendMessageOperation(object);
    }
 }

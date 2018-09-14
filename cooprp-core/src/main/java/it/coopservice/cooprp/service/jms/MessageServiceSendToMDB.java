@@ -172,10 +172,10 @@ public class MessageServiceSendToMDB
 
    public void sendMessageOperation(Operation operation)
    {
-      MapMessage msg = null;
+      ObjectMessage msg = null;
       try
       {
-         msg = session.createMapMessage();
+         msg = session.createObjectMessage();
       }
       catch (Throwable t)
       {
@@ -185,7 +185,7 @@ public class MessageServiceSendToMDB
          if (msg == null)
          {
             initialize();
-            msg = session.createMapMessage();
+            msg = session.createObjectMessage(operation);
          }
 
          send(msg, AppConstants.OPERATIONS_QUEUE);

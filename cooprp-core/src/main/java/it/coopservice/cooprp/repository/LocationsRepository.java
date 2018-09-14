@@ -18,5 +18,10 @@ public class LocationsRepository extends BaseRepository<Location>
    {
       super.applyRestrictions(search, alias, separator, sb, params);
    }
+
+   public Location findLocation(String latitudine, String longitudine)
+   {
+      return null;
+   }
 }
 

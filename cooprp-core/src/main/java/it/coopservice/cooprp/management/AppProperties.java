@@ -24,6 +24,12 @@ public enum AppProperties {
     ldapGroupMembership,
     ldapBaseTech,
 
+    // mail
+    ucsMailAccount,
+    ucsMailBcc,
+    ucsmailWsdlLocation, ucsmailUser, ucsmailPassword, utentiLdapDaEscludere,
+    sawMail,
+
     defaultSchema,
     casServerLoginUrl,
     casExcluded,

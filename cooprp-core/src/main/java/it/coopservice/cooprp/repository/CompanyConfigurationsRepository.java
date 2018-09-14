@@ -43,4 +43,5 @@ public class CompanyConfigurationsRepository extends BaseRepository<CompanyConfi
       }
       return resultList.get(0);
    }
+
 }

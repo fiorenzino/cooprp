@@ -30,6 +30,10 @@ public class CompanyConfiguration implements Serializable
    public String wsTurni;
    public Long tolleranzaMinuti;
 
+   public boolean forzaScrittura;
+   //Elimino latitudine e longitudine se aggancio la location
+   public boolean gestisciPrivacy;
+
    @Transient
    public Societa societa;
 
