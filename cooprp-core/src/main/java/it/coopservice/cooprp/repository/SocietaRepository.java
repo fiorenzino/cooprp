@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -66,7 +67,7 @@ public class SocietaRepository implements Serializable
                                  + " ARCHIDOCFIRSTYEAROFCUDS, SOCIETAPAGHE "
                                  + " FROM " + AppConstants.ARGO_SCHEMA + Societa.TABLE_NAME +
                                  " WHERE ID > 0 ").getResultList();
-      List<Societa> result = mapResultSetToSocieta((List<Object[]>) resultSet);
+      List<Societa> result = mapResultSetToSocieta(resultSet);
       return result;
    }
 
@@ -100,15 +101,45 @@ public class SocietaRepository implements Serializable
                .setParameter("CODICE_SOCIETA", codiceSocieta)
                .getResultList();
 
-      List<Societa> result = mapResultSetToSocieta((List<Object[]>) resultSet);
+      List<Societa> result = mapResultSetToSocieta(resultSet);
       return result.get(0);
    }
 
-   public List<Societa> mapResultSetToSocieta(List<Object[]> result)
+   public List<Societa> societaPagaOperatore(String codiceFiscale) throws Exception
+   {
+      String query = ""
+               + "SELECT "
+               + " S.ID, S.NOME, S.SOCIETAID, S.ARCHIDOCCODICESOCIETA, S.ARCHIDOCDESCRIZIONESOCIETA, 1,"
+               + " S.ARCHIDOCDESCSOCIETACUD, S.CODICESOGGETTOPREFISSO, S.SAPDATAINIZIO, "
+               + " S.ARCHIDOCARCHIVE, S.ARCHIDOCDOCUMENTTYPEBUSTA, S.ARCHIDOCDOCUMENTTYPECUD, "
+               + " S.ARCHIDOCFIRSTYEAROFCUDS,S.SOCIETAPAGHE "
+               + " FROM " + AppConstants.EGGS_SCHEMA + ".operatori_attivi OP "
+               + " INNER JOIN " + AppConstants.ARGO_SCHEMA + "." + Societa.TABLE_NAME
+               + " S ON S.SOCIETAID = OP.CODICE_SOCIETA"
+               + " WHERE UPPER(codicefiscale) = :CODICE_FISCALE "
+               + " GROUP BY "
+               + " S.ID, S.NOME, S.SOCIETAID, S.ARCHIDOCCODICESOCIETA, S.ARCHIDOCDESCRIZIONESOCIETA, 1,"
+               + " S.ARCHIDOCDESCSOCIETACUD, S.CODICESOGGETTOPREFISSO, S.SAPDATAINIZIO, "
+               + " S.ARCHIDOCARCHIVE, S.ARCHIDOCDOCUMENTTYPEBUSTA, S.ARCHIDOCDOCUMENTTYPECUD, "
+               + " S.ARCHIDOCFIRSTYEAROFCUDS,S.SOCIETAPAGHE ";
+
+      Query nativequery = em.createNativeQuery(query).setParameter("CODICE_FISCALE", codiceFiscale.toUpperCase());
+
+      List<Object> resultSet = nativequery.getResultList();
+
+      if (resultSet == null || resultSet.isEmpty())
+      {
+         throw new Exception("Non esiste un operatore attivo con codice fiscale " + codiceFiscale);
+      }
+      return mapResultSetToSocieta(resultSet);
+   }
+
+   public List<Societa> mapResultSetToSocieta(List<Object> result)
    {
       List<Societa> societaList = new ArrayList<>();
-      result.forEach(object ->
+      result.forEach(objectGener ->
       {
+         Object[] object = (Object[]) objectGener;
          Societa societa = new Societa();
          if (object[0] != null && object[0] instanceof Number)
          {
@@ -117,7 +148,7 @@ public class SocietaRepository implements Serializable
          }
          if (object[1] != null)
          {
-            societa.nome =  object[1].toString();
+            societa.nome = object[1].toString();
          }
          if (object[2] != null)
          {

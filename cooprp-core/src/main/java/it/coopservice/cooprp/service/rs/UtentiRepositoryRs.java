@@ -40,7 +40,6 @@ public class UtentiRepositoryRs implements Serializable
    @Inject
    LdapService ldapService;
 
-   @Inject OperatoriAttiviRepository operatoriAttiviRepository;
 
    @Inject SocietaRepository societaRepository;
 
@@ -59,7 +58,7 @@ public class UtentiRepositoryRs implements Serializable
          }
          Utente utente = ldapService.find(username);
 
-         List<Societa> societas = operatoriAttiviRepository.societaPagaOperatore(username);
+         List<Societa> societas = societaRepository.societaPagaOperatore(username);
          utente.societa = societas;
 
          //String matrProvv = operatoriAttiviRepository.matricolaProvvOperatoreValido(username);
