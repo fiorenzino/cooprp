@@ -41,6 +41,8 @@
         <version.com.vladmihalcea>2.2.2</version.com.vladmihalcea>
         <version.org.slf4j>1.7.25</version.org.slf4j>
         <version.io.rest-assured>3.0.0</version.io.rest-assured>
+        <coopservice.mailwsclient.version>7.1.1</coopservice.mailwsclient.version>
+
     </properties>
 
 
@@ -121,6 +123,16 @@
                 <artifactId>hibernate-types-52</artifactId>
                 <version>${version.com.vladmihalcea}</version>
             </dependency>
+
+            <!-- ucsmail ws -->
+            <dependency>
+                <groupId>it.coopservice.ws.client</groupId>
+                <artifactId>ucsmailwsclient</artifactId>
+                <version>${coopservice.mailwsclient.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
@@ -138,6 +150,8 @@
                 <artifactId>gesta-service</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+
 
 
         </dependencies>
