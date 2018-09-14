@@ -62,6 +62,7 @@ public class Operation implements Serializable
    public Date dataNotifica;
 
    public String timezone;
+   public String societaId;
 
    public Operation()
    {

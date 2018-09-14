@@ -1,7 +1,9 @@
 package it.coopservice.cooprp.service.rs;
 
 import it.coopservice.cooprp.management.AppConstants;
+import it.coopservice.cooprp.model.CompanyConfiguration;
 import it.coopservice.cooprp.model.Operation;
+import it.coopservice.cooprp.repository.CompanyConfigurationsRepository;
 import it.coopservice.cooprp.repository.OperationsRepository;
 import org.giavacms.api.service.RsRepositoryService;
 import org.giavacms.commons.auth.jwtcookie.annotation.AccountCookieAndTokenVerification;
@@ -35,15 +37,19 @@ public class OperationsRepositoryRs extends RsRepositoryService<Operation>
       super(operationsRepository);
    }
 
+   @Inject CompanyConfigurationsRepository companyConfigurationsRepository;
+
    @Override protected void prePersist(Operation object) throws Exception
    {
       convertDataOra(object);
+      convertSocietaToCompanyConfiguration(object);
       super.prePersist(object);
    }
 
    @Override protected Operation preUpdate(Operation object) throws Exception
    {
       convertDataOra(object);
+      convertSocietaToCompanyConfiguration(object);
       return super.preUpdate(object);
    }
 
@@ -67,4 +73,13 @@ public class OperationsRepositoryRs extends RsRepositoryService<Operation>
       object.realDate = realDate;
    }
 
+   private void convertSocietaToCompanyConfiguration(Operation object) throws Exception
+   {
+
+      if (object.societaId == null)
+      {
+         throw new Exception("Occorre specificare la societa'");
+      }
+      object.companyConfiguration_uuid = companyConfigurationsRepository.findBySocietaId(object.societaId);
+   }
 }

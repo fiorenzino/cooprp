@@ -15,7 +15,7 @@ import static it.coopservice.cooprp.model.CompanyConfiguration.TABLE_NAME;
 public class CompanyConfiguration implements Serializable
 {
 
-   static final String TABLE_NAME = "crp_companyconfigurations";
+   public static final String TABLE_NAME = "crp_companyconfigurations";
 
    @Id
    @GeneratedValue(generator = "uuid")
@@ -30,10 +30,12 @@ public class CompanyConfiguration implements Serializable
    public String wsTurni;
    public Long tolleranzaMinuti;
 
-   public String societaId;
-
    @Transient
    public Societa societa;
+
+   public String societaId;
+
+
    public CompanyConfiguration()
    {
    }
