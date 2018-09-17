@@ -11,5 +11,17 @@
 
     <artifactId>gesta-service</artifactId>
 
+    <packaging>war</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>it.coopservice.cooprp</groupId>
+            <artifactId>cooprp-core</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <defaultGoal>clean package</defaultGoal>
+        <finalName>${project.artifactId}</finalName>
+    </build>
 </project>
