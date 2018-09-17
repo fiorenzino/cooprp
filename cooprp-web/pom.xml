@@ -24,34 +24,5 @@
     <build>
         <defaultGoal>clean package</defaultGoal>
         <finalName>${project.artifactId}</finalName>
-        <plugins>
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.0.2</version>
-                <executions>
-                    <execution>
-                        <id>move-to-root</id>
-                        <!-- here the phase you need -->
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${basedir}/../target</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>${basedir}/../cooprp-web/target</directory>
-                                    <includes><!-- what -->
-                                        <include>cooprp-web/**</include>
-                                        <include>cooprp-web.war</include>
-                                    </includes>
-                                </resource>
-
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
     </build>
 </project>
