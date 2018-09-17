@@ -1,11 +1,13 @@
 package it.coopservice.cooprp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.vividsolutions.jts.geom.Point;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigInteger;
 
 import static it.coopservice.cooprp.model.Location.TABLE_NAME;
 
@@ -14,7 +16,7 @@ import static it.coopservice.cooprp.model.Location.TABLE_NAME;
 public class Location implements Serializable
 {
 
-   static final String TABLE_NAME = "crp_locations";
+   public static final String TABLE_NAME = "crp_locations";
 
    @Id
    @GeneratedValue(generator = "uuid")
@@ -23,6 +25,7 @@ public class Location implements Serializable
    public String uuid;
 
    @Transient
+   @JsonIgnore
    public Point location;
 
 //   @Transient
@@ -43,6 +46,8 @@ public class Location implements Serializable
    public String societaId;
 
    public String mail;
+
+   public BigInteger range;
 
    public Location()
    {

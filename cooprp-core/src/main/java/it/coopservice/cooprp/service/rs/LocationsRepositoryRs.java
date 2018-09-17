@@ -2,6 +2,7 @@ package it.coopservice.cooprp.service.rs;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.geom.Point;
 import it.coopservice.cooprp.management.AppConstants;
 import it.coopservice.cooprp.model.Location;
 import it.coopservice.cooprp.repository.LocationsRepository;
@@ -14,6 +15,8 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 @Path(AppConstants.LOCATIONS_PATH)
 @Stateless
@@ -22,6 +25,9 @@ import javax.ws.rs.core.MediaType;
 @AccountCookieVerification
 public class LocationsRepositoryRs extends RsRepositoryService<Location>
 {
+
+   @Inject
+   LocationsRepository locationsRepository;
    public LocationsRepositoryRs()
    {
 
@@ -33,22 +39,45 @@ public class LocationsRepositoryRs extends RsRepositoryService<Location>
       super(locationRepository);
    }
 
-   ///In mapping frameworks spatial coordinates are often in order of latitude and longitude. In spatial databases spatial coordinates are in x = longitude, and y = latitude.
+   ///In mapping frameworks spatial coordinates are often in order of latitude and longitude.
+   // In spatial databases spatial coordinates are in x = longitude, and y = latitude.
+    @Override protected Location preUpdate(Location object) throws Exception
+   {
+      DecimalFormat df = new DecimalFormat();
+      DecimalFormatSymbols sfs = new DecimalFormatSymbols();
+      sfs.setDecimalSeparator('.');
+      df.setDecimalFormatSymbols(sfs);
+      double x = df.parse(object.longitudine).doubleValue();
+      double y = df.parse(object.latitudine).doubleValue();
+      Coordinate coordinate = new Coordinate(x, y);
+      Point point = new GeometryFactory().createPoint(coordinate);
+      //      object.location = point;
+      return object;
+   }
+
+   @Override protected void prePersist(Location object) throws Exception
+   {
+      DecimalFormat df = new DecimalFormat();
+      DecimalFormatSymbols sfs = new DecimalFormatSymbols();
+      sfs.setDecimalSeparator('.');
+      df.setDecimalFormatSymbols(sfs);
+      double x = df.parse(object.longitudine).doubleValue();
+      double y = df.parse(object.latitudine).doubleValue();
+      Coordinate coordinate = new Coordinate(x, y);
+      Point point = new GeometryFactory().createPoint(coordinate);
+//      object.location = point;
+   }
+
    @Override protected void postUpdate(Location object) throws Exception
    {
-      int x = Integer.parseInt(object.longitudine);
-      int y = Integer.parseInt(object.latitudine);
-      object.location = new GeometryFactory().createPoint(new Coordinate(x, y));
+     // locationsRepository.updateLocation(object);
+      super.postUpdate(object);
    }
 
    @Override protected void postPersist(Location object) throws Exception
    {
-      int x = Integer.parseInt(object.longitudine);
-      int y = Integer.parseInt(object.latitudine);
-      object.location = new GeometryFactory().createPoint(new Coordinate(x, y));
+      locationsRepository.updateLocation(object);
       super.postPersist(object);
    }
-
-
 }
 

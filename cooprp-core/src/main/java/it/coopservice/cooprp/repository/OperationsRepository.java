@@ -47,4 +47,20 @@ public class OperationsRepository extends BaseRepository<Operation>
                .executeUpdate();
       return result;
    }
+
+
+   public int deleteCoordinates(String operationUuid)
+   {
+      String queryString = ""
+               + " UPDATE " + AppProperties.defaultSchema.value() + Operation.TABLE_NAME
+               + " SET latitudine = null, longitudine = null"
+               + " WHERE uuid = :OPERATION_UUID";
+
+      int result = getEm().
+               createNativeQuery(queryString)
+               .setParameter("OPERATION_UUID", operationUuid)
+//               .setParameter("LOCATION_UUID", locationUuid)
+               .executeUpdate();
+      return result;
+   }
 }
