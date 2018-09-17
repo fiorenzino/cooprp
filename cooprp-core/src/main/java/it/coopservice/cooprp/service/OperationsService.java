@@ -39,14 +39,18 @@ public class OperationsService
 
          //TODO 1) ricerca della location (per società) che si trova nell'intorno specificato dalla configurazione
          Location location = locationsRepository.findLocation(operation.latitudine, operation.longitudine);
-         logger.info(" FOUND LOCATION: " + location.nome + " FOR OPERATION: " + operation.uuid);
+
+
+
 
          if (location != null && companyConfiguration.gestisciPrivacy)
          {
+            logger.info(" FOUND LOCATION WITH PRIVACY CONFIGURATION: " + location.nome + " FOR OPERATION: " + operation.uuid);
             operationsRepository.updateLocationAndDeleteCoordinates(operation.uuid, location.uuid);
          }
          else if (location != null)
          {
+            logger.info(" FOUND LOCATION WITHOUT PRIVACY CONFIGURATION: " + location.nome + " FOR OPERATION: " + operation.uuid);
             operationsRepository.updateLocation(operation.uuid, location.uuid);
          }
 

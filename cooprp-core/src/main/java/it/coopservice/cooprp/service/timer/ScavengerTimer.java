@@ -12,7 +12,7 @@ public class ScavengerTimer
 
    @Inject OperationsRepository operationsRepository;
 
-   @Schedule(hour = "0", minute = "*", persistent = false)
+   @Schedule(persistent = false)
    public void exec()
    {
    }

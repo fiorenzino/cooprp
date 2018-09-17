@@ -5,7 +5,6 @@ import it.coopservice.cooprp.model.Operation;
 import it.coopservice.cooprp.repository.CompanyConfigurationsRepository;
 import it.coopservice.cooprp.repository.OperationsRepository;
 import it.coopservice.cooprp.service.jms.MessageServiceSendToMDB;
-import it.coopservice.cooprp.service.jms.OperationsMDB;
 import org.giavacms.api.service.RsRepositoryService;
 import org.giavacms.commons.auth.jwtcookie.annotation.AccountCookieAndTokenVerification;
 import org.giavacms.commons.util.DateUtils;

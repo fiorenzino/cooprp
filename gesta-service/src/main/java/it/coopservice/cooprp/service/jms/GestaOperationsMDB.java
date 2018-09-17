@@ -3,7 +3,7 @@ package it.coopservice.cooprp.service.jms;
 import org.giavacms.commons.tracer.TracerInterceptor;
 import it.coopservice.cooprp.management.AppConstants;
 import it.coopservice.cooprp.model.pojo.Operation;
-import it.coopservice.cooprp.service.OperationsService;
+import it.coopservice.cooprp.service.GestaOperationsService;
 import org.jboss.logging.Logger;
 
 import javax.ejb.ActivationConfigProperty;
@@ -29,7 +29,7 @@ public class GestaOperationsMDB implements MessageListener
 {
    Logger logger = Logger.getLogger(getClass());
 
-   @Inject OperationsService operationsService;
+   @Inject GestaOperationsService gestaOperationsService;
 
    @Override
    public void onMessage(Message message)
@@ -38,7 +38,7 @@ public class GestaOperationsMDB implements MessageListener
       {
          ObjectMessage msg = (ObjectMessage) message;
          Operation operation = (Operation) msg.getObject();
-         operationsService.writeToFile(operation);
+         gestaOperationsService.writeToFile(operation);
       }
       catch (Exception e)
       {

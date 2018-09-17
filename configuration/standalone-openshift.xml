@@ -493,7 +493,7 @@
 
                 <jms-queue name="ExpiryQueue" entries="java:/jms/queue/ExpiryQueue"/>
                 <jms-queue name="DLQ" entries="java:/jms/queue/DLQ"/>
-                <jms-queue name="operations_queue" entries="queue/operations_queue java:/jms/queue/operations_queue"/>
+                <jms-queue name="operationsqueue" entries="queue/operationsqueue jms/queue/operationsqueue java:jboss/exported/jms/queue/operationsqueue"/>
 
                 <connection-factory name="InVmConnectionFactory"
                                     connectors="in-vm"

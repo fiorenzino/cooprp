@@ -21,7 +21,7 @@ public class AppConstants
 
    public static final String LOGIN_PATH = "/v1/login";
 
-   public static final String OPERATIONS_QUEUE = "operations_queue";
+   public static final String OPERATIONS_QUEUE = "jms/queue/operationsqueue";
    public static final String DEFAULT_TIMEZONE = "Europe/Rome";
 
    public static final String GMT_TIMEZONE = "GMT";

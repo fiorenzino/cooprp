@@ -185,9 +185,9 @@ public class MessageServiceSendToMDB
          if (msg == null)
          {
             initialize();
-            msg = session.createObjectMessage(operation);
          }
-
+         msg.setObject(operation);
+         logger.info("[" + operation + ", queue= " + AppConstants.OPERATIONS_QUEUE);
          send(msg, AppConstants.OPERATIONS_QUEUE);
       }
       catch (Throwable t)

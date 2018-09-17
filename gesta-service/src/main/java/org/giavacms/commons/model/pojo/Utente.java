@@ -1,15 +1,11 @@
 package org.giavacms.commons.model.pojo;
 
-import it.coopservice.cooprp.model.pojo.Societa;
-
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@XmlRootElement
 public class Utente implements Serializable
 {
    private static final long serialVersionUID = -2548444688311424091L;
@@ -19,9 +15,7 @@ public class Utente implements Serializable
    private String cognome;
    private List<String> ruoli;
    private String email;
-   public String matricola;
 
-   public List<Societa> societa;
    private Map<String, String> attributi;
 
    public List<String> getRuoli()
