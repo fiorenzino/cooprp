@@ -15,6 +15,7 @@ import org.jboss.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.jms.ObjectMessage;
+import javax.persistence.NoResultException;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -38,24 +39,33 @@ public class OperationsService
                   .find(operation.companyConfiguration_uuid);
 
          //TODO 1) ricerca della location (per società) che si trova nell'intorno specificato dalla configurazione
-         Location location = locationsRepository.findLocation(operation.latitudine, operation.longitudine);
+         String location_uuid = null;
+         try
+         {
+            locationsRepository.findLocation(operation.latitudine, operation.longitudine);
+         }
+         catch (NoResultException nre)
+         {
+            //logger.warn("")
+         }
+
          String wsOperazioni = companyConfiguration.wsOperazioni;
 
-         if (location != null && companyConfiguration.gestisciPrivacy)
+         if (location_uuid != null && companyConfiguration.gestisciPrivacy)
          {
-            logger.info(" FOUND LOCATION WITH PRIVACY CONFIGURATION: " + location.nome + " FOR OPERATION: "
+            logger.info(" FOUND LOCATION WITH PRIVACY CONFIGURATION: " + location_uuid + " FOR OPERATION: "
                      + operation.uuid);
             //se previsto da configurazione, eliminazione delle informazioni di localizzazione (lat e lon)
-            operationsRepository.updateLocationAndDeleteCoordinates(operation.uuid, location.uuid);
+            operationsRepository.updateLocationAndDeleteCoordinates(operation.uuid, location_uuid);
          }
-         if (location != null && !companyConfiguration.gestisciPrivacy)
+         if (location_uuid != null && !companyConfiguration.gestisciPrivacy)
          {
-            logger.info(" FOUND LOCATION WITHOUT PRIVACY CONFIGURATION: " + location.nome + " FOR OPERATION: "
+            logger.info(" FOUND LOCATION WITHOUT PRIVACY CONFIGURATION: " + location_uuid + " FOR OPERATION: "
                      + operation.uuid);
-            operationsRepository.updateLocation(operation.uuid, location.uuid);
+            operationsRepository.updateLocation(operation.uuid, location_uuid);
          }
 
-         if (location == null && companyConfiguration.gestisciPrivacy)
+         if (location_uuid == null && companyConfiguration.gestisciPrivacy)
          {
             //COSA FACCIO SE NON TROVO LOCATION E GESTISCO LA PRIVACY?
             operationsRepository.deleteCoordinates(operation.uuid);
@@ -64,7 +74,7 @@ public class OperationsService
          //se trovata: se previsto da configurazione, invio dell'operazione di IN o OUT all'applicazione corrispondente
          //se non trovata: se previsto da configurazione (anche in caso di mancata localizzazione), invio dell'operazione di IN o OUT all'applicazione corrispondente
          if ((wsOperazioni != null && !wsOperazioni.trim().isEmpty())
-                  && (location != null || companyConfiguration.forzaScrittura))
+                  && (location_uuid != null || companyConfiguration.forzaScrittura))
          {
 
             RestStaticClient.post(AppConstants.JBOSS_QUALIFIED_HOST_NAME_PROPERTY,
@@ -77,7 +87,7 @@ public class OperationsService
          }
 
          //se previsto da configurazione, invio email con segnalazione contenente le informazioni su dipendente
-         if (location == null && companyConfiguration.mail != null && !companyConfiguration.mail.trim().isEmpty())
+         if (location_uuid == null && companyConfiguration.mail != null && !companyConfiguration.mail.trim().isEmpty())
          {
             MailUtils.send("Empty Location", operation.toString(),
                      Collections.singleton(companyConfiguration.mail.trim()),

@@ -1,6 +1,5 @@
 package it.coopservice.cooprp.repository;
 
-import it.coopservice.cooprp.management.AppConstants;
 import it.coopservice.cooprp.management.AppProperties;
 import it.coopservice.cooprp.model.Location;
 import org.giavacms.api.repository.Search;
@@ -24,8 +23,37 @@ public class LocationsRepository extends BaseRepository<Location>
       super.applyRestrictions(search, alias, separator, sb, params);
    }
 
-   public Location findLocation(String latitudine, String longitudine)
+   public String  findLocation(String latitudine, String longitudine)
    {
+      DecimalFormat df = new DecimalFormat();
+      DecimalFormatSymbols sfs = new DecimalFormatSymbols();
+      sfs.setDecimalSeparator('.');
+      df.setDecimalFormatSymbols(sfs);
+      try
+      {
+         double x = df.parse(longitudine).doubleValue();
+         double y = df.parse(latitudine).doubleValue();
+         String queryString= ""
+                  + " SELECT UUID "
+                  + " from " + AppProperties.defaultSchema.value() + Location.TABLE_NAME
+                  + " where ST_Contains (ST_Buffer( location, range, 'quad_segs=8'), POINT(:X_AXIS, :Y_AXIS)\\:\\:geometry)";
+
+        return (String) getEm().createNativeQuery(queryString)
+                  .setParameter("X_AXIS", x)
+                  .setParameter("Y_AXIS", y)
+                  .getSingleResult();
+
+      }
+      catch (ParseException e)
+      {
+         e.printStackTrace();
+      }
+
+      //ST_Contains: Geometry A contains Geometry B if and only if no points of B lie in the exterior of A,
+      //  and at least one point of the interior of B lies in the interior of A https://postgis.net/docs/ST_Contains.html
+      //ST_Buffer:
+
+
       return null;
    }
 

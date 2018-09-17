@@ -3,6 +3,7 @@
 <jboss-deployment-structure>
     <deployment>
         <dependencies>
+            <module name="org.postgresql" />
         </dependencies>
         <exclusions>
         </exclusions>

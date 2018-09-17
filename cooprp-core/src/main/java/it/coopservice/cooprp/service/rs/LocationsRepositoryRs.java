@@ -65,19 +65,7 @@ public class LocationsRepositoryRs extends RsRepositoryService<Location>
       double y = df.parse(object.latitudine).doubleValue();
       Coordinate coordinate = new Coordinate(x, y);
       Point point = new GeometryFactory().createPoint(coordinate);
-//      object.location = point;
-   }
-
-   @Override protected void postUpdate(Location object) throws Exception
-   {
-     // locationsRepository.updateLocation(object);
-      super.postUpdate(object);
-   }
-
-   @Override protected void postPersist(Location object) throws Exception
-   {
-      locationsRepository.updateLocation(object);
-      super.postPersist(object);
+      object.location = point;
    }
 }
 

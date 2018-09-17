@@ -443,7 +443,7 @@
 
                 <jms-queue name="ExpiryQueue" entries="java:/jms/queue/ExpiryQueue"/>
                 <jms-queue name="DLQ" entries="java:/jms/queue/DLQ"/>
-                <jms-queue name="gesta_operations_queue" entries="queue/gesta_operations_queue java:/jms/queue/gesta_operations_queue"/>
+                <jms-queue name="gesta_operations_queue" entries="queue/gesta_operations_queue jms/queue/gesta_operations_queue java:jboss/exported/jms/queue/gesta_operations_queue"/>
 
                 <connection-factory name="InVmConnectionFactory"
                                     connectors="in-vm"
