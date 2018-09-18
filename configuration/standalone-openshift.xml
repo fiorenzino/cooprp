@@ -54,6 +54,9 @@
 
         <property name="cooprp.casExcluded" value="/download;/api"/>
         <property name="cooprp.casServerLoginUrl" value="https://cas.coopservice.it/cas/login"/>
+
+        <property name="cooprp.sawMail" value="saw@coopservice.it"/>
+        <property name="cooprp.gestaServiceHost" value="cooprp-gesta.saw-dev.svc"/>
     </system-properties>
 
     <management>

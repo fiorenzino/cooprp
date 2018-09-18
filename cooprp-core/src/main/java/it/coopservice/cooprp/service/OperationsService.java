@@ -18,6 +18,7 @@ import javax.jms.ObjectMessage;
 import javax.persistence.NoResultException;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 @Stateless
 public class OperationsService
@@ -38,11 +39,13 @@ public class OperationsService
          CompanyConfiguration companyConfiguration = companyConfigurationsRepository
                   .find(operation.companyConfiguration_uuid);
 
-         //TODO 1) ricerca della location (per società) che si trova nell'intorno specificato dalla configurazione
+         //ricerca della location (per società) che si trova nell'intorno specificato dalla configurazione
          String location_uuid = null;
          try
          {
-            locationsRepository.findLocation(operation.latitudine, operation.longitudine);
+            logger.info(" SEARCHING LOCATION FOR SOCIETA ID: " + companyConfiguration.societaId + " LONGITUDE: "
+                     + operation.longitudine + " LATITUDE: " + operation.latitudine);
+            location_uuid = locationsRepository.findLocation(operation.latitudine, operation.longitudine, companyConfiguration.societaId);
          }
          catch (NoResultException nre)
          {
@@ -77,13 +80,16 @@ public class OperationsService
                   && (location_uuid != null || companyConfiguration.forzaScrittura))
          {
 
-            RestStaticClient.post(AppConstants.JBOSS_QUALIFIED_HOST_NAME_PROPERTY,
+            Map<String, Object> headersParam = new HashMap<>();
+            headersParam.put("Authorization", "Bearer " + operation.token);
+            RestStaticClient.post(AppProperties.gestaServiceHost.value(),
                      companyConfiguration.wsOperazioni,
                      operation,
                      Operation.class,
                      new HashMap<>(),
                      new HashMap<>(),
-                     new HashMap<>());
+                     headersParam
+            );
          }
 
          //se previsto da configurazione, invio email con segnalazione contenente le informazioni su dipendente

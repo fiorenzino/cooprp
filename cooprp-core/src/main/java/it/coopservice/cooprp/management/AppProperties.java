@@ -29,6 +29,8 @@ public enum AppProperties {
     ucsMailBcc,
     ucsmailWsdlLocation, ucsmailUser, ucsmailPassword, utentiLdapDaEscludere,
     sawMail,
+    gestaServiceHost,
+
 
     defaultSchema,
     casServerLoginUrl,

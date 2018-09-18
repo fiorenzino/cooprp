@@ -23,7 +23,7 @@ public class LocationsRepository extends BaseRepository<Location>
       super.applyRestrictions(search, alias, separator, sb, params);
    }
 
-   public String  findLocation(String latitudine, String longitudine)
+   public String findLocation(String latitudine, String longitudine, String societaId)
    {
       DecimalFormat df = new DecimalFormat();
       DecimalFormatSymbols sfs = new DecimalFormatSymbols();
@@ -33,14 +33,16 @@ public class LocationsRepository extends BaseRepository<Location>
       {
          double x = df.parse(longitudine).doubleValue();
          double y = df.parse(latitudine).doubleValue();
-         String queryString= ""
+         String queryString = ""
                   + " SELECT UUID "
-                  + " from " + AppProperties.defaultSchema.value() + Location.TABLE_NAME
-                  + " where ST_Contains (ST_Buffer( location, range, 'quad_segs=8'), POINT(:X_AXIS, :Y_AXIS)\\:\\:geometry)";
+                  + " FROM " + AppProperties.defaultSchema.value() + Location.TABLE_NAME
+                  + " WHERE societaId = :SOCIETA_ID"
+                  + " AND ST_Contains (ST_Buffer( location, range, 'quad_segs=8'), POINT(:X_AXIS, :Y_AXIS)\\:\\:geometry)";
 
-        return (String) getEm().createNativeQuery(queryString)
+         return (String) getEm().createNativeQuery(queryString)
                   .setParameter("X_AXIS", x)
                   .setParameter("Y_AXIS", y)
+                  .setParameter("SOCIETA_ID", societaId)
                   .getSingleResult();
 
       }
@@ -52,7 +54,6 @@ public class LocationsRepository extends BaseRepository<Location>
       //ST_Contains: Geometry A contains Geometry B if and only if no points of B lie in the exterior of A,
       //  and at least one point of the interior of B lies in the interior of A https://postgis.net/docs/ST_Contains.html
       //ST_Buffer:
-
 
       return null;
    }
@@ -67,8 +68,8 @@ public class LocationsRepository extends BaseRepository<Location>
       double y = df.parse(location.latitudine).doubleValue();
       String queryString =
                " UPDATE " + AppProperties.defaultSchema.value() + Location.TABLE_NAME + " AS L " +
-               " SET LOCATION = POINT(:LONGITUDE, :LATITUDE)\\:\\:geometry " +
-               " WHERE UUID = :LOCATION_UUID";
+                        " SET LOCATION = POINT(:LONGITUDE, :LATITUDE)\\:\\:geometry " +
+                        " WHERE UUID = :LOCATION_UUID";
       getEm().createNativeQuery(queryString)
                .setParameter("LONGITUDE", x)
                .setParameter("LATITUDE", y)

@@ -34,10 +34,11 @@ public class GestaRs implements Serializable
    HttpServletRequest httpServletRequest;
 
    @Inject MessageServiceSendToMDB messageServiceSendToMDB;
+
    @POST
    public Response registerOperation(Operation operation)
    {
       messageServiceSendToMDB.sendMessageOperation(operation);
-      return null;
+      return Response.accepted().entity(operation).build();
    }
 }
