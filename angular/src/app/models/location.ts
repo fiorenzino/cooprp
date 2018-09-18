@@ -5,7 +5,7 @@ export class Location{
     latitudine: string;
     longitudine: string;
     nome: string;
-    indrizzo: string;
+    indirizzo: string;
     comune: string;
     provincia: string;
     nazione: string;

@@ -48,6 +48,8 @@ import {WorkshiftsComponent} from "./components/workshifts/workshifts.component"
 import {OperationsComponent} from "./components/operations/operations.component";
 import {NotificationsListComponent} from "./components/notifications/notifications-list.component";
 import {NotificationsComponent} from "./components/notifications/notifications.component";
+import {NumberInput} from "./shared/number-input";
+import {IntegerInput} from "./shared/integer-input";
 
 @NgModule({
 	declarations: [
@@ -59,7 +61,8 @@ import {NotificationsComponent} from "./components/notifications/notifications.c
 		InlineProfileComponent,
         AppMenuComponent,
         AppSubMenu,
-
+        NumberInput,
+        IntegerInput,
 
         CompanyConfigurationsListComponent,
         CompanyConfigurationsComponent,
