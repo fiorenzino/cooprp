@@ -45,7 +45,8 @@ public class OperationsService
          {
             logger.info(" SEARCHING LOCATION FOR SOCIETA ID: " + companyConfiguration.societaId + " LONGITUDE: "
                      + operation.longitudine + " LATITUDE: " + operation.latitudine);
-            location_uuid = locationsRepository.findLocation(operation.latitudine, operation.longitudine, companyConfiguration.societaId);
+            location_uuid = locationsRepository
+                     .findLocation(operation.latitudine, operation.longitudine, companyConfiguration.societaId);
          }
          catch (NoResultException nre)
          {
@@ -80,6 +81,7 @@ public class OperationsService
                   && (location_uuid != null || companyConfiguration.forzaScrittura))
          {
 
+            operationsRepository.updateDataNotifica(operation.uuid);
             Map<String, Object> headersParam = new HashMap<>();
             headersParam.put("Authorization", "Bearer " + operation.token);
             RestStaticClient.post(AppProperties.gestaServiceHost.value(),
@@ -90,6 +92,7 @@ public class OperationsService
                      new HashMap<>(),
                      headersParam
             );
+
          }
 
          //se previsto da configurazione, invio email con segnalazione contenente le informazioni su dipendente

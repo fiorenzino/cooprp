@@ -48,7 +48,6 @@ public class OperationsRepository extends BaseRepository<Operation>
       return result;
    }
 
-
    public int deleteCoordinates(String operationUuid)
    {
       String queryString = ""
@@ -59,8 +58,18 @@ public class OperationsRepository extends BaseRepository<Operation>
       int result = getEm().
                createNativeQuery(queryString)
                .setParameter("OPERATION_UUID", operationUuid)
-//               .setParameter("LOCATION_UUID", locationUuid)
+               //               .setParameter("LOCATION_UUID", locationUuid)
                .executeUpdate();
       return result;
+   }
+
+   public int updateDataNotifica(String operationUuid)
+   {
+      String queryString = " UPDATE " + AppProperties.defaultSchema.value() + Operation.TABLE_NAME + " o "
+               + " SET dataNotifica = current_date "
+               + " WHERE uuid = :UUID ";
+      return getEm().createNativeQuery(queryString)
+               .setParameter("UUID", operationUuid)
+               .executeUpdate();
    }
 }
