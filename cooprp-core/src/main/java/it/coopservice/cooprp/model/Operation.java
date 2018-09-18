@@ -64,6 +64,8 @@ public class Operation implements Serializable
    public String timezone;
    public String societaId;
 
+   @Transient
+   public String token;
    public Operation()
    {
 

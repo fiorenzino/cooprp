@@ -6,14 +6,17 @@ import it.coopservice.cooprp.repository.CompanyConfigurationsRepository;
 import it.coopservice.cooprp.repository.OperationsRepository;
 import it.coopservice.cooprp.service.jms.MessageServiceSendToMDB;
 import org.giavacms.api.service.RsRepositoryService;
+import org.giavacms.commons.auth.jwt.util.JWTUtils;
 import org.giavacms.commons.auth.jwtcookie.annotation.AccountCookieAndTokenVerification;
 import org.giavacms.commons.util.DateUtils;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,6 +29,13 @@ import java.util.Date;
 public class OperationsRepositoryRs extends RsRepositoryService<Operation>
 {
 
+   @Inject CompanyConfigurationsRepository companyConfigurationsRepository;
+
+   @Inject MessageServiceSendToMDB messageServiceSendToMDB;
+
+   @Context
+   HttpServletRequest httpServletRequest;
+
    public OperationsRepositoryRs()
    {
 
@@ -36,10 +46,6 @@ public class OperationsRepositoryRs extends RsRepositoryService<Operation>
    {
       super(operationsRepository);
    }
-
-   @Inject CompanyConfigurationsRepository companyConfigurationsRepository;
-
-   @Inject MessageServiceSendToMDB messageServiceSendToMDB;
 
    @Override protected void prePersist(Operation object) throws Exception
    {
@@ -77,7 +83,6 @@ public class OperationsRepositoryRs extends RsRepositoryService<Operation>
 
    private void convertSocietaToCompanyConfiguration(Operation object) throws Exception
    {
-
       if (object.societaId == null)
       {
          throw new Exception("Occorre specificare la societa'");
@@ -87,6 +92,8 @@ public class OperationsRepositoryRs extends RsRepositoryService<Operation>
 
    @Override protected void postPersist(Operation object) throws Exception
    {
+      String token = JWTUtils.getBearerToken(httpServletRequest);
+      object.token = token;
       messageServiceSendToMDB.sendMessageOperation(object);
    }
 }
