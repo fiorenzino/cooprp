@@ -1,0 +1,588 @@
+@charset "UTF-8";
+
+/* Empty Boxes */
+.EmptyBox5 {
+    display: block;
+    width: 100%;
+    height: 5px;
+    overflow: hidden;
+}
+
+.EmptyBox10 {
+    display: block;
+    width: 100%;
+    height: 10px;
+    overflow: hidden;
+}
+
+.EmptyBox20 {
+    display: block;
+    width: 100%;
+    height: 20px;
+    overflow: hidden;
+}
+
+.EmptyBox30 {
+    display: block;
+    width: 100%;
+    height: 30px;
+    overflow: hidden;
+}
+
+.EmptyBox40 {
+    display: block;
+    width: 100%;
+    height: 40px;
+    overflow: hidden;
+}
+
+.EmptyBox50 {
+    display: block;
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+}
+
+.EmptyBox60 {
+    display: block;
+    width: 100%;
+    height: 60px;
+    overflow: hidden;
+}
+
+.EmptyBox70 {
+    display: block;
+    width: 100%;
+    height: 70px;
+    overflow: hidden;
+}
+
+.EmptyBox80 {
+    display: block;
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+}
+
+.EmptyBox90 {
+    display: block;
+    width: 100%;
+    height: 90px;
+    overflow: hidden;
+}
+
+.EmptyBox100 {
+    display: block;
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+}
+
+.EmptyBox110 {
+    display: block;
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+}
+
+.EmptyBox120 {
+    display: block;
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+}
+
+.EmptyBox130 {
+    display: block;
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+}
+
+.EmptyBox140 {
+    display: block;
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+}
+
+.EmptyBox150 {
+    display: block;
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+}
+
+.Fs9 {
+    font-size: 9px !important;
+}
+
+.Fs10 {
+    font-size: 10px !important;
+}
+
+.Fs11 {
+    font-size: 11px !important;
+}
+
+.Fs12 {
+    font-size: 12px !important;
+}
+
+.Fs13 {
+    font-size: 13px !important;
+}
+
+.Fs14 {
+    font-size: 14px !important;
+}
+
+.Fs15 {
+    font-size: 15px !important;
+}
+
+.Fs16 {
+    font-size: 16px !important;
+}
+
+.Fs17 {
+    font-size: 17px !important;
+}
+
+.Fs18 {
+    font-size: 18px !important;
+}
+
+.Fs19 {
+    font-size: 19px !important;
+}
+
+.Fs20 {
+    font-size: 20px !important;
+}
+
+.Fs21 {
+    font-size: 21px !important;
+}
+
+.Fs22 {
+    font-size: 22px !important;
+}
+
+.Fs23 {
+    font-size: 23px !important;
+}
+
+.Fs24 {
+    font-size: 24px !important;
+}
+
+.Fs25 {
+    font-size: 25px !important;
+}
+
+.Fs26 {
+    font-size: 26px !important;
+}
+
+.Fs27 {
+    font-size: 27px !important;
+}
+
+.Fs28 {
+    font-size: 28px !important;
+}
+
+.Fs29 {
+    font-size: 29px !important;
+}
+
+.Fs30 {
+    font-size: 30px !important;
+}
+
+.Fs40 {
+    font-size: 40px !important;
+}
+
+.Fs50 {
+    font-size: 50px !important;
+}
+
+.Fs60 {
+    font-size: 60px !important;
+}
+
+.Fs100 {
+    font-size: 100px !important;
+}
+
+.Fs130 {
+    font-size: 130px !important;
+}
+
+/* Font Type */
+.FontBold {
+    font-weight: bold !important;
+}
+
+.FontLight {
+    font-weight: lighter;
+}
+
+.FontNormal {
+    font-weight: normal;
+}
+
+/* Text Aligns */
+.TexAlCenter {
+    text-align: center !important;
+}
+
+.TexAlLeft {
+    text-align: left !important;
+}
+
+.TexAlRight {
+    text-align: right !important;
+}
+
+.TexAlJustify {
+    text-align: justify !important;
+}
+
+/* Width */
+.Wid100 {
+    width: 100%;
+}
+
+.Wid90I {
+    width: 90% !important;
+}
+
+.Wid90 {
+    width: 90%;
+}
+
+.Wid80 {
+    width: 80%;
+}
+
+.Wid70 {
+    width: 70%;
+}
+
+.Wid70I {
+    width: 70% !important;
+}
+
+.Wid60 {
+    width: 60%;
+}
+
+.Wid50 {
+    width: 50%;
+}
+
+.Wid50I {
+    width: 50% !important;
+}
+
+.Wid45 {
+    width: 45%;
+}
+
+.Wid40 {
+    width: 40%;
+}
+
+.Wid30 {
+    width: 30%;
+}
+
+/* Width Special Values */
+.Wid33 {
+    width: 33.3%;
+}
+
+.Wid25 {
+    width: 25%;
+}
+
+.Wid20 {
+    width: 20%;
+}
+
+.Wid10 {
+    width: 10%;
+}
+
+/* Height */
+.Hei100 {
+    height: 100%;
+}
+
+.Hei90 {
+    height: 90%;
+}
+
+.Hei80 {
+    height: 80%;
+}
+
+.Hei70 {
+    height: 70%;
+}
+
+.Hei60 {
+    height: 60%;
+}
+
+.Hei40 {
+    height: 40%;
+}
+
+.Hei50 {
+    height: 50%;
+}
+
+.Hei30 {
+    height: 30%;
+}
+
+.Hei20 {
+    height: 20%;
+}
+
+.Hei10 {
+    height: 10%;
+}
+
+/* Paddings */
+.PaddingTopPercent5 {
+    padding-top: 5%;
+}
+
+.PaddingTopPercent10 {
+    padding-top: 10%;
+}
+
+.PaddingTopPercent20 {
+    padding-top: 20%;
+}
+
+.PaddingTop20 {
+    padding-top: 20px;
+}
+
+.PaddingTop30 {
+    padding-top: 30px;
+}
+
+.PaddingTop40 {
+    padding-top: 40px;
+}
+
+.MarTop5 {
+    margin-top: 5px;
+}
+
+.MarTop10 {
+    margin-top: 10px;
+}
+
+.MarTop15 {
+    margin-top: 15px;
+}
+
+.MarTop20 {
+    margin-top: 20px;
+}
+
+.MarTop30 {
+    margin-top: 30px;
+}
+
+.MarTop40 {
+    margin-top: 40px;
+}
+
+.MarTop50 {
+    margin-top: 50px;
+}
+
+.MarBot5 {
+    margin-bottom: 5px;
+}
+
+.MarBot10 {
+    margin-bottom: 10px;
+}
+
+.MarBot20 {
+    margin-bottom: 20px;
+}
+
+.MarBot30 {
+    margin-bottom: 30px;
+}
+
+.MarBot40 {
+    margin-bottom: 40px;
+}
+
+.MarBot50 {
+    margin-bottom: 50px;
+}
+
+.MarLeft5 {
+    margin-left: 5px;
+}
+
+.MarLeft10 {
+    margin-left: 10px;
+}
+
+.MarLeft20 {
+    margin-left: 20px;
+}
+
+.MarLeft30 {
+    margin-left: 30px;
+}
+
+.MarLeft40 {
+    margin-left: 40px;
+}
+
+.MarLeft50 {
+    margin-left: 50px;
+}
+
+.MarRight5 {
+    margin-right: 5px;
+}
+
+.MarRight10 {
+    margin-right: 10px;
+}
+
+.MarRight20 {
+    margin-right: 20px;
+}
+
+.MarRight30 {
+    margin-right: 30px;
+}
+
+.MarRight40 {
+    margin-right: 40px;
+}
+
+.MarRight50 {
+    margin-right: 50px;
+}
+
+/* Floating */
+.Fleft {
+    float: left;
+}
+
+.Fright {
+    float: right;
+}
+
+.Fnone {
+    float: none !important;
+}
+
+.Blue {
+    color: #0277BD !important;
+}
+
+.Gray {
+    color: #90A4AE;
+}
+
+.Red {
+    color: #720004 !important;
+}
+
+.Green {
+    color: #05722a !important;
+}
+
+.Yellow {
+    color: #F7D100;
+}
+
+.Orange {
+    color: #836300 !important;
+}
+
+.layout-wrapper.layout-compact .ui-treetable tbody .ui-treetable-row td {
+    padding: 2px !important;
+}
+
+.PadRight20 {
+    padding-right: 20px;
+}
+
+.DisplayNo {
+    display: none;
+}
+
+.DisplayYes {
+    display: inherit;
+}
+
+.CurHand {
+    cursor: pointer;
+}
+
+.CurDefault {
+    cursor: default;
+}
+
+.RowIndex {
+    width: 80px;
+    text-align: center;
+    font-weight: bolder;
+    font-style: italic;
+}
+
+.Operations {
+    width: 120px;
+    text-align: center;
+}
+
+.Separator {
+    border-bottom: solid 1px #E0E0E0;
+    overflow: hidden;
+    height: 0px;
+    /*margin: 25px 0px 20px;*/
+    clear: both;
+}
+
+.SeparatorFull {
+    border-bottom: solid 1px #E0E0E0;
+    display: block;
+    overflow: hidden;
+    height: 0px;
+    margin: 25px -30px 20px;
+    clear: both;
+}
+
+.CardNoMarginBottom {
+    margin-bottom: 0px !important;
+}
+
+/* Overflows */
+.OvHidden{ overflow:hidden;}
+.OvScroll{ overflow:scroll;}
+.OvAuto{ overflow:auto;}
+.OvVisible{ overflow:visible;}
+.OvXScroll{ overflow-x:scroll;}
+.OvYScroll{ overflow-y:scroll;}
+.OvXHidden{ overflow-x:hidden;}
+.OvYHidden{ overflow-y:hidden;}
