@@ -59,6 +59,6 @@ public class GestaOperationsService
       msg.append(type);
       msg.append(separetor);
 
-      Files.write(Paths.get("/home/jboss/Timbrature.txt"), msg.toString().getBytes());
+      Files.write(Paths.get("/home/jboss/cooprp/Timbrature.txt"), msg.toString().getBytes());
    }
 }
