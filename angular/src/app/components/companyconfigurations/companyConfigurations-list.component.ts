@@ -103,4 +103,8 @@ export class CompanyConfigurationsListComponent extends AbstractListComponent<Co
         super.postSave();
     }
 
+
+    newElement(): CompanyConfiguration {
+        return new CompanyConfiguration();
+    }
 }

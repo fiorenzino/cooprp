@@ -16,6 +16,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="ui-g-4 ui-g-nopad">
+                    <div class="ui-g-12 ui-g-nopad">
+                        <div class="ui-g-3 TexAlRight FontBold">
+                            <label>Codice Societa paghe</label>
+                        </div>
+                        <div class="ui-g-9">
+                            <input class="Wid90" pInputText type="text" [(ngModel)]="service.search.obj.societaId">
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div class="ui-g-12 TexAlCenter">
                 <button type="button" pButton icon="pi pi-search" label="Cerca"
@@ -45,6 +56,10 @@
                             <th [pSortableColumn]="'uuid'" pResizableColumn class="FontBold"
                                 style="background-color: aliceblue !important;">Uuid
                                 <p-sortIcon [field]="'uuid'"></p-sortIcon>
+                            </th>
+                            <th [pSortableColumn]="'societaId'" pResizableColumn class="FontBold"
+                                style="background-color: aliceblue !important;">Codice societa
+                                <p-sortIcon [field]="'societaId'"></p-sortIcon>
                             </th>
                             <th [pSortableColumn]="'operationStatus'" pResizableColumn class="FontBold"
                                 style="background-color: aliceblue !important;">Stato operazione

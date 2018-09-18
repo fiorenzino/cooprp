@@ -104,4 +104,9 @@ export class LanguagesListComponent extends AbstractListComponent<Language> impl
     postSave() {
         super.postSave();
     }
+
+
+    newElement(): Language {
+        return new Language();
+    }
 }

@@ -3,6 +3,7 @@ import {AbstractListComponent} from "../../commons/abstract-list-component";
 import {Notification} from "../../models/notification";
 import {Router} from "@angular/router";
 import {NotificationsService} from "../../services/notifications.service";
+import {CompanyConfiguration} from "../../models/companyConfiguration";
 
 @Component({
     templateUrl: './notifications-list.component.html',
@@ -37,4 +38,8 @@ export class NotificationsListComponent extends AbstractListComponent<Notificati
         this.router.navigate(['/notifications/edit', this.getId()]);
     }
 
+
+    newElement(): Notification {
+        return new Notification();
+    }
 }

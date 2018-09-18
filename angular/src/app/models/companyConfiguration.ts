@@ -6,4 +6,9 @@ export class CompanyConfiguration {
     wsOperazioni: string;
     wsTurni: string;
     tolleranzaMinuti: number;
+
+    forzaScrittura: boolean;
+    gestisciPrivacy: boolean;
+    societaId: boolean;
+
 }

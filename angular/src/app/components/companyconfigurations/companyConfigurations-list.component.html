@@ -19,6 +19,17 @@
                     </div>
                 </div>
 
+                <div class="ui-g-4 ui-g-nopad">
+                    <div class="ui-g-12 ui-g-nopad">
+                        <div class="ui-g-3 TexAlRight FontBold">
+                            <label>Codice Societa</label>
+                        </div>
+                        <div class="ui-g-9">
+                            <input class="Wid90" pInputText type="text" [(ngModel)]="service.search.like.societaId">
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div class="ui-g-12 TexAlCenter">
                 <button type="button" pButton icon="pi pi-search" label="Cerca"
@@ -61,6 +72,9 @@
                                 <p-sortIcon [field]="'retentionPeriod'"></p-sortIcon>
                             </th>
                             <th pResizableColumn class="FontBold"
+                                style="background-color: aliceblue !important;">Gestione Web Service
+                            </th>
+                            <th pResizableColumn class="FontBold"
                                 style="background-color: aliceblue !important;">Web Services
                             </th>
                             <th pResizableColumn class="FontBold"
@@ -78,39 +92,66 @@
                             <td class="RowIndex">{{ rowIndex + 1 }}</td>
                             <td class="ui-resizable-column">{{rowData.uuid}}</td>
 
-                            <td class="ui-resizable-column" *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
                                 {{rowData.nome}}
                             </td>
-                            <td class="ui-resizable-column" *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
                                 <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.nome">
                             </td>
-                            <td class="ui-resizable-column" *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
                                 {{rowData.mail}}
                             </td>
-                            <td class="ui-resizable-column" *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
                                 <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.mail">
                             </td>
-                            <td class="ui-resizable-column" *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
                                 {{rowData.retentionPeriod}}
                             </td>
-                            <td class="ui-resizable-column" *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
-                                <input class="Wid100" pInputText type="number" [(ngModel)]="elementToEdit.retentionPeriod">
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                <input class="Wid100" pInputText type="number"
+                                       [(ngModel)]="elementToEdit.retentionPeriod">
                             </td>
-                            <td class="ui-resizable-column" *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                                {{rowData.forzaScrittura}}
+                                <br/>
+                                {{rowData.gestisciPrivacy}}
+                            </td>
+
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                <p-checkbox [(ngModel)]="elementToEdit.forzaScrittura" binary="true" label="forza scrittura"></p-checkbox>
+                                <br/>
+                                <p-checkbox [(ngModel)]="elementToEdit.gestisciPrivacy" binary="true" label="privacy"></p-checkbox>
+
+                            </td>
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
                                 {{rowData.wsOperazioni}}
                                 <br/>
                                 {{rowData.wsTurni}}
                             </td>
-                            <td class="ui-resizable-column" *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
                                 <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.wsOperazioni">
                                 <br/>
                                 <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.wsTurni">
                             </td>
-                            <td class="ui-resizable-column" *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
                                 {{rowData.tolleranzaMinuti}}
                             </td>
-                            <td class="ui-resizable-column" *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
-                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.tolleranzaMinuti">
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                <input class="Wid100" pInputText type="text"
+                                       [(ngModel)]="elementToEdit.tolleranzaMinuti">
                             </td>
 
                             <td class="Operations" *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
@@ -163,7 +204,7 @@
                 <div class="ui-g-6 ui-g-nopad">
                     <div class="ui-g-12 ui-g-nopad">
                         <div class="ui-g-3 TexAlRight FontBold">
-                            <label>Lingua</label>
+                            <label>Retention Period (Giorni)</label>
                         </div>
                         <div class="ui-g-9">
                             <input class="Wid90" pInputText type="number" [(ngModel)]="element.retentionPeriod">
@@ -174,7 +215,7 @@
                 <div class="ui-g-6 ui-g-nopad">
                     <div class="ui-g-12 ui-g-nopad">
                         <div class="ui-g-3 TexAlRight FontBold">
-                            <label>Chiave</label>
+                            <label>Tolleranza (Minuti)</label>
                         </div>
                         <div class="ui-g-9">
                             <input class="Wid100" pInputText type="number" [(ngModel)]="element.tolleranzaMinuti">
@@ -209,8 +250,50 @@
                 </div>
 
             </div>
+            <div class="ui-g-12">
+
+
+                <div class="ui-g-6 ui-g-nopad">
+                    <div class="ui-g-12 ui-g-nopad">
+                        <div class="ui-g-3 TexAlRight FontBold">
+                            <label>Forza Scrittura</label>
+                        </div>
+                        <div class="ui-g-9">
+                            <p-checkbox [(ngModel)]="element.forzaScrittura" binary="true"></p-checkbox>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui-g-6 ui-g-nopad">
+                    <div class="ui-g-12 ui-g-nopad">
+                        <div class="ui-g-3 TexAlRight FontBold">
+                            <label>Gestisci Privacy</label>
+                        </div>
+                        <div class="ui-g-9">
+                            <p-checkbox [(ngModel)]="element.gestisciPrivacy" binary="true"></p-checkbox>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="ui-g-12">
+
+
+                <div class="ui-g-6 ui-g-nopad">
+                    <div class="ui-g-12 ui-g-nopad">
+                        <div class="ui-g-3 TexAlRight FontBold">
+                            <label>Societa Id</label>
+                        </div>
+                        <div class="ui-g-9">
+                            <input class="Wid90" pInputText type="text" [(ngModel)]="element.societaId">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
             <div class="ui-g-5 TexAlRight">
-                <button type="button" pButton icon="pi pi-save"  label="Salva"
+                <button type="button" pButton icon="pi pi-save" label="Salva"
                         (click)="save()"></button>
             </div>
             <div class="ui-g-2 TexAlCenter">

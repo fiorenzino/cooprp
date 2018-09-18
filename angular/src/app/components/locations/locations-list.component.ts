@@ -98,4 +98,9 @@ export class LocationsListComponent extends AbstractListComponent<Location> impl
     postSave() {
         super.postSave();
     }
+
+
+    newElement(): Location {
+        return new Location();
+    }
 }

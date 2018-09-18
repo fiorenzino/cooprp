@@ -37,4 +37,8 @@ export class WorkshiftsListComponent extends AbstractListComponent<Workshift> im
         this.router.navigate(['/workshifts/edit', this.getId()]);
     }
 
+
+    newElement(): Workshift {
+        return new Workshift();
+    }
 }

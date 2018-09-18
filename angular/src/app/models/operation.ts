@@ -12,4 +12,6 @@ export class Operation {
 
     timezone: string;
     realDate: number;
+
+    societaId: string;
 }
