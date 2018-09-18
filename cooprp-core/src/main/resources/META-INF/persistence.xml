@@ -10,7 +10,7 @@
             <property name="hibernate.dialect" value="org.hibernate.spatial.dialect.postgis.PostgisPG9Dialect"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value=""/>
             <property name="hibernate.default_schema" value="cooprp"/>
             <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
         </properties>
