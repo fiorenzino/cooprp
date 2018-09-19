@@ -25,6 +25,7 @@ public class Location implements Serializable
    public String uuid;
 
 
+   @JsonIgnore
    public Point location;
 
 //   @Transient
