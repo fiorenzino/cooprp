@@ -2,10 +2,20 @@
 
 <div class="ui-g">
     <div class="ui-g-12">
+        <div class="card">
+            <div class="ui-g">
+                <div class="ui-g-12">
+                    <span class="Fs20 Blue FontBold">Lista Location</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="ui-g-12">
         <div class="card" style="margin-bottom: 0px !important; min-height: calc(100vh - 152px)">
             <div class="ui-g-12">
 
-                <div class="ui-g-4 ui-g-nopad">
+                <div class="ui-g-6 ui-g-nopad">
                     <div class="ui-g-12 ui-g-nopad">
                         <div class="ui-g-3 TexAlRight FontBold">
                             <label>Nome</label>
@@ -15,26 +25,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="ui-g-4 ui-g-nopad">
+                <div class="ui-g-6 ui-g-nopad">
                     <div class="ui-g-12 ui-g-nopad">
                         <div class="ui-g-3 TexAlRight FontBold">
-                            <label>Operation Status</label>
+                            <label>Codice Societa</label>
                         </div>
                         <div class="ui-g-9">
-                            <input class="Wid90" pInputText type="text" [(ngModel)]="service.search.obj.indirizzo">
+                            <input class="Wid90" pInputText type="text" [(ngModel)]="service.search.obj.societaId">
                         </div>
                     </div>
                 </div>
-                <div class="ui-g-4 ui-g-nopad">
-                    <div class="ui-g-12 ui-g-nopad">
-                        <div class="ui-g-3 TexAlRight FontBold">
-                            <label>uuid esterno</label>
-                        </div>
-                        <div class="ui-g-9">
-                            <input class="Wid90" pInputText type="text" [(ngModel)]="service.search.obj.wbs">
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <div class="ui-g-12 TexAlCenter">
                 <button type="button" pButton icon="pi pi-search" label="Cerca"
@@ -66,14 +67,28 @@
                                 <p-sortIcon [field]="'uuid'"></p-sortIcon>
                             </th>
                             <th pResizableColumn class="FontBold"
-                                style="background-color: aliceblue !important;">Coordinate
-                            </th>
-                            <th [pSortableColumn]="'indirizzo'" pResizableColumn class="FontBold"
-                                style="background-color: aliceblue !important;">Indirizzo
-                                <p-sortIcon [field]="'indirizzo'"></p-sortIcon>
+                                style="background-color: aliceblue !important;">
+                                Latitudine
+                                <br/>
+                                Longitudine
                             </th>
                             <th pResizableColumn class="FontBold"
-                                style="background-color: aliceblue !important;">Wbs
+                                style="background-color: aliceblue !important;">Indirizzo
+                                <br/>
+                                Comune
+                                <br/>
+                                Provincia
+                                <br/>
+                                Nazione
+                            </th>
+
+                            <th pResizableColumn class="FontBold"
+                                style="background-color: aliceblue !important;">
+                                Wbs
+                                <br/>
+                                Cantiere
+                                <br/>
+                                Commessa
                             </th>
                             <th [pSortableColumn]="'societaId'" pResizableColumn class="FontBold"
                                 style="background-color: aliceblue !important;">Societa
@@ -83,6 +98,7 @@
                                 style="background-color: aliceblue !important;">Mail
                                 <p-sortIcon [field]="'mail'"></p-sortIcon>
                             </th>
+                            <th class="FontBold" style="background-color: aliceblue !important;">Operazioni</th>
                         </tr>
 
 
@@ -91,11 +107,21 @@
                         <tr>
                             <td class="RowIndex">{{ rowIndex + 1 }}</td>
                             <td>{{ rowData.uuid }}</td>
-                            <td class="ui-resizable-column">{{rowData.latitudine}}
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                                {{rowData.latitudine}}
                                 <br/>
                                 {{rowData.longitudine}}
                             </td>
-                            <td class="ui-resizable-column">{{rowData.indirizzo}}
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.latitudine">
+                                <br/>
+                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.longitudine">
+                            </td>
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                                {{rowData.indirizzo}}
                                 <br/>
                                 {{rowData.comune}}
                                 <br/>
@@ -103,14 +129,63 @@
                                 <br/>
                                 {{rowData.nazione}}
                             </td>
-                            <td class="ui-resizable-column">{{rowData.wbs}}
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.indirizzo">
+                                <br/>
+                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.comune">
+                                <br/>
+                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.provincia">
+                                <br/>
+                                <input id="nazione_label" class="Wid100" pInputText type="text"
+                                       [(ngModel)]="elementToEdit.nazione">
+                            </td>
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                                {{rowData.wbs}}
                                 <br/>
                                 {{rowData.cantiere}}
                                 <br/>
                                 {{rowData.commessa}}
                             </td>
-                            <td class="ui-resizable-column">{{rowData.societaId}}</td>
-                            <td class="ui-resizable-column">{{rowData.mail}}</td>
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.wbs">
+                                <br/>
+                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.cantiere">
+                                <br/>
+                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.commessa">
+                            </td>
+
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                                {{rowData.societaId}}
+                            </td>
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.societaId">
+                            </td>
+
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                                {{rowData.mail}}
+                            </td>
+                            <td class="ui-resizable-column"
+                                *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.mail">
+                            </td>
+                            <td class="Operations" *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                                <button type="button" pButton (click)="confirmDelete(rowData)"
+                                        icon="pi pi-trash"></button>
+                                <button type="button" pButton (click)="editInline(rowData)"
+                                        icon="pi pi-pencil"></button>
+                            </td>
+                            <td class="Operations" *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                <button type="button" pButton (click)="cancelEdit()"
+                                        icon="pi pi-times"></button>
+                                <button type="button" pButton (click)="update(rowData)"
+                                        icon="pi pi-save"></button>
+                            </td>
                         </tr>
                     </ng-template>
                 </p-table>

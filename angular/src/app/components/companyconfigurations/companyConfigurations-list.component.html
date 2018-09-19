@@ -4,6 +4,15 @@
     <p-confirmDialog header="Conferma" icon="fa fa-question-circle" acceptLabel="Sì" rejectLabel="No"
                      #cd></p-confirmDialog>
     <div class="ui-g-12">
+        <div class="card">
+            <div class="ui-g">
+                <div class="ui-g-12">
+                    <span class="Fs20 Blue FontBold">Configurazione Societa</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-g-12">
         <div class="card" style="margin-bottom: 0px !important; min-height: calc(100vh - 152px)">
             <div class="ui-g-12">
 
@@ -161,10 +170,10 @@
                                         icon="pi pi-pencil"></button>
                             </td>
                             <td class="Operations" *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
-                                <button type="button" pButton (click)="update(rowData)"
-                                        icon="pi pi-check"></button>
                                 <button type="button" pButton (click)="cancelEdit()"
                                         icon="pi pi-times"></button>
+                                <button type="button" pButton (click)="update(rowData)"
+                                        icon="pi pi-save"></button>
                             </td>
                         </tr>
                     </ng-template>
