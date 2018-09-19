@@ -6,6 +6,8 @@ import org.giavacms.api.repository.Search;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import java.beans.Transient;
+import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
@@ -25,6 +27,19 @@ public class LocationsRepository extends BaseRepository<Location>
 
    public String findLocation(String latitudine, String longitudine, String societaId)
    {
+      try
+      {
+         //per accendere e spegnere la location a seconda del db. Togliere quando Ci faranno il db (pluralis maiestatis)
+         Field field = Location.class.getField("location");
+         if (field.isAnnotationPresent(Transient.class)) {
+            return null;
+         }
+      }
+      catch (NoSuchFieldException e)
+      {
+         e.printStackTrace();
+      }
+
       DecimalFormat df = new DecimalFormat();
       DecimalFormatSymbols sfs = new DecimalFormatSymbols();
       sfs.setDecimalSeparator('.');
