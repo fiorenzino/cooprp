@@ -80,7 +80,8 @@ public class OperationsService
          if ((wsOperazioni != null && !wsOperazioni.trim().isEmpty())
                   && (location_uuid != null || companyConfiguration.forzaScrittura))
          {
-
+            logger.info("SENDING OPERATION UUID : " + operation.uuid + "TO WS_OPERAZIONI: "
+                     + companyConfiguration.wsOperazioni);
             operationsRepository.updateDataNotifica(operation.uuid);
             Map<String, Object> headersParam = new HashMap<>();
             headersParam.put("Authorization", "Bearer " + operation.token);
@@ -103,8 +104,7 @@ public class OperationsService
                      Collections.singleton(AppProperties.sawMail.value().trim()));
          }
 
-         logger.info("SENDING OPERATION UUID : " + operation.uuid + "TO WS_OPERAZIONI: "
-                  + companyConfiguration.wsOperazioni);
+
 
       }
       catch (Exception e)

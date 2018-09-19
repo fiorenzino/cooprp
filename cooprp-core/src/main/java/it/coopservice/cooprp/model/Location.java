@@ -25,7 +25,6 @@ public class Location implements Serializable
    public String uuid;
 
 
-   @Transient
    public Point location;
 
 //   @Transient

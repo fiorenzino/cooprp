@@ -57,6 +57,15 @@
 
         <property name="cooprp.sawMail" value="saw@coopservice.it"/>
         <property name="cooprp.gestaServiceHost" value="http://cooprp-gesta-service-saw-dev.cloud.coopservice.it"/>
+        <property name="cooprp.ucsmailWsdlLocation" value="http://ucs.coopservice.it/ucsmail/MailWS?wsdl"/>
+        <property name="cooprp.ucsmailUser" value="gestionesoci"/>
+        <property name="cooprp.ucsmailPassword" value="gA94zjzDH"/>
+        <property name="cooprp.ucsmailSessionAlert" value=""/>
+        <property name="cooprp.ucsmailArchidocAlert" value=""/>
+        <property name="cooprp.ucsmailTechnicalAlert" value=""/>
+        <property name="cooprp.ucsMailAccount" value="Default" />
+        <property name="cooprp.ucsMailBcc" value="saw@coopservice.it"/>
+
     </system-properties>
 
     <management>
