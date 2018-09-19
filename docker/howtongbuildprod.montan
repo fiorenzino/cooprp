@@ -1,1 +1,6 @@
-ng build --prod && echo "ng build --watch --output-path dist"
+cd angular &&  \
+ng build --prod --output-hashing=all &&  \
+rm -rf ../cooprp-web/src/main/webapp/private/* &&  \
+cp -r dist/angular/* ../cooprp-web/src/main/webapp/private &&  \
+git add ../cooprp-web/src/main/webapp/private
+
