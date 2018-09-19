@@ -13,6 +13,6 @@ export class Location{
     cantiere: string;
     commessa: string;
 
-    societa_uuid: string;
+    societaId: string;
     mail: string;
 }

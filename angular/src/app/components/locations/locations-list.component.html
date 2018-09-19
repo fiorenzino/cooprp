@@ -75,9 +75,9 @@
                             <th pResizableColumn class="FontBold"
                                 style="background-color: aliceblue !important;">Wbs
                             </th>
-                            <th [pSortableColumn]="'societa_uuid'" pResizableColumn class="FontBold"
+                            <th [pSortableColumn]="'societaId'" pResizableColumn class="FontBold"
                                 style="background-color: aliceblue !important;">Societa
-                                <p-sortIcon [field]="'societa_uuid'"></p-sortIcon>
+                                <p-sortIcon [field]="'societaId'"></p-sortIcon>
                             </th>
                             <th [pSortableColumn]="'mail'" pResizableColumn class="FontBold"
                                 style="background-color: aliceblue !important;">Mail
@@ -109,7 +109,7 @@
                                 <br/>
                                 {{rowData.commessa}}
                             </td>
-                            <td class="ui-resizable-column">{{rowData.societa_uuid}}</td>
+                            <td class="ui-resizable-column">{{rowData.societaId}}</td>
                             <td class="ui-resizable-column">{{rowData.mail}}</td>
                         </tr>
                     </ng-template>
@@ -124,7 +124,7 @@
                             <label>Societa</label>
                         </div>
                         <div class="ui-g-9">
-                            <input class="Wid90" pInputText type="text" [(ngModel)]="element.societa_uuid">
+                            <input class="Wid90" pInputText type="text" [(ngModel)]="element.societaId">
                         </div>
                     </div>
                 </div>
