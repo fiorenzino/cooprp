@@ -24,7 +24,7 @@ public class RESTCorsDemoResponseFilter implements ContainerRequestFilter, Conta
         responseCtx.getHeaders().add("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS");
 
         responseCtx.getHeaders().add("Access-Control-Max-Age", "1209600");
-        responseCtx.getHeaders().add("Access-Control-Allow-Headers", "Accept, Accept-Language, Content-Language, Content-Type");
+        responseCtx.getHeaders().add("Access-Control-Allow-Headers", "Authorization, Accept, Accept-Language, Content-Language, Content-Type");
 
         try {
             MultivaluedMap<String, String> multiValuedMap = requestCtx.getHeaders();
