@@ -56,7 +56,7 @@
         <property name="cooprp.casServerLoginUrl" value="https://cas.coopservice.it/cas/login"/>
 
         <property name="cooprp.sawMail" value="saw@coopservice.it"/>
-        <property name="cooprp.gestaServiceHost" value="http://cooprp-gesta-service-saw-dev.cloud.coopservice.it"/>
+        <property name="cooprp.gestaServiceHost" value="${gestaServiceHost}"/>
         <property name="cooprp.ucsmailWsdlLocation" value="http://ucs.coopservice.it/ucsmail/MailWS?wsdl"/>
         <property name="cooprp.ucsmailUser" value="gestionesoci"/>
         <property name="cooprp.ucsmailPassword" value="gA94zjzDH"/>
