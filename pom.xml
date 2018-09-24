@@ -8,7 +8,6 @@
     <artifactId>cooprp</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>gesta-service</module>
         <module>cooprp-core</module>
         <module>cooprp-web</module>
     </modules>
