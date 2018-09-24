@@ -24,5 +24,35 @@
     <build>
         <defaultGoal>clean package</defaultGoal>
         <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <!-- here the phase you need -->
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/../configuration</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/../cooprp-web/configuration-web</directory>
+                                    <includes><!-- what -->
+                                        <include>standalone-openshift.xml</include>
+                                    </includes>
+                                </resource>
+
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+        </plugins>
     </build>
 </project>
