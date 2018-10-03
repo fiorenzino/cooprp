@@ -85,7 +85,7 @@ public class OperationsService
             operationsRepository.updateDataNotifica(operation.uuid);
             Map<String, Object> headersParam = new HashMap<>();
             headersParam.put("Authorization", "Bearer " + operation.token);
-            RestStaticClient.post(AppProperties.gestaServiceHost.value(),
+            RestStaticClient.post(
                      companyConfiguration.wsOperazioni,
                      operation,
                      Operation.class,

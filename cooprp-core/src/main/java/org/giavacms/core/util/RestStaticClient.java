@@ -163,12 +163,12 @@ public class RestStaticClient {
         }
     }
 
-    public static <T> T post(String targetHost, String targetPath,
+    public static <T> T post(String targetHostPath,
                              Object entity,
                              Class<T> t, Map<String, Object> queryParams,
                              Map<String, Object> pathParams,
                              Map<String, Object> headerParams) throws Exception {
-        try (WebTargetClosable webTargetClosable = new WebTargetClosable(targetHost, targetPath)) {
+        try (WebTargetClosable webTargetClosable = new WebTargetClosable(targetHostPath)) {
             WebTarget webTarget = webTargetClosable.webTarget;
             if (pathParams != null && !pathParams.isEmpty()) {
                 for (String key : pathParams.keySet()) {
