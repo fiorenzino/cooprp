@@ -228,7 +228,7 @@ public abstract class AbstractRepository<T> implements Serializable,
     * ).append(leftOuterJoinAlias).append(".allegati.id = ").append (alias).append(".id"); }
     * <p/>
     * if (search.getObj().getAttivo() != null) { sb.append(separator).append(" ").append(alias)
-    * .append(".attivo = :attivo "); // aggiunta alla mappa params.put("attivo", search.getObj().getAttivo()); //
+    * .append(".attivo = :attivo "); params.put("attivo", search.getObj().attivo);
     * separatore separator = " and "; }
     * <p/>
     * if (search.getObj().getNumero() != null && !search.getObj().getNumero().trim().isEmpty()) {

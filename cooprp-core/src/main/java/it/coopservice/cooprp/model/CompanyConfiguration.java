@@ -23,6 +23,8 @@ public class CompanyConfiguration implements Serializable
    @Column(name = "uuid", unique = true)
    public String uuid;
 
+   public boolean attivo = true;
+
    public String nome;
    public String mail;
    public Long retentionPeriod;

@@ -25,6 +25,11 @@ public class LanguagesRepository extends BaseRepository<Language>
             Map<String, Object> params) throws Exception
    {
       super.applyRestrictions(search, alias, separator, sb, params);
+      {
+         sb.append(separator).append(" ").append(alias).append(".attivo = :attivo ");
+         params.put("attivo", search.getObj().attivo);
+         separator = " and ";
+      }
    }
 
    @Override protected Language prePersist(Language object) throws Exception

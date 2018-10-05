@@ -19,7 +19,11 @@ public class CompanyConfigurationsRepository extends BaseRepository<CompanyConfi
             Map<String, Object> params) throws Exception
    {
       super.applyRestrictions(search, alias, separator, sb, params);
-
+      {
+         sb.append(separator).append(" ").append(alias).append(".attivo = :attivo ");
+         params.put("attivo", search.getObj().attivo);
+         separator = " and ";
+      }
    }
 
    public String findBySocietaId(String societaId) throws Exception
@@ -44,4 +48,21 @@ public class CompanyConfigurationsRepository extends BaseRepository<CompanyConfi
       return resultList.get(0);
    }
 
+   @Override public void delete(Object key) throws Exception
+   {
+      int updated = getEm().createQuery("UPDATE " + CompanyConfiguration.class.getSimpleName() +
+               " SET attivo = FALSE " +
+               " WHERE uuid = :UUID ")
+               .setParameter("UUID", key)
+               .executeUpdate();
+      if (updated < 1)
+      {
+         throw new Exception("Non esiste un record con uuid: " + key);
+      }
+
+      if (updated > 1)
+      {
+         throw new Exception("Esistono diversi record con uuid: " + key);
+      }
+   }
 }

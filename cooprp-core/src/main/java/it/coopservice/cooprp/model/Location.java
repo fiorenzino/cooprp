@@ -24,14 +24,15 @@ public class Location implements Serializable
    @Column(name = "uuid", unique = true)
    public String uuid;
 
+   public boolean attivo = true;
 
    @JsonIgnore
    public Point location;
 
-//   @Transient
+   //   @Transient
    public String latitudine;
 
-//   @Transient
+   //   @Transient
    public String longitudine;
 
    public String nome;

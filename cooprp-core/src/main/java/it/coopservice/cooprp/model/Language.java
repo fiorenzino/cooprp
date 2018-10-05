@@ -10,7 +10,7 @@ import java.util.Date;
 
 import static it.coopservice.cooprp.model.Language.TABLE_NAME;
 
-@Table(name = TABLE_NAME, uniqueConstraints={@UniqueConstraint(columnNames ={"key","language"})})
+@Table(name = TABLE_NAME, uniqueConstraints = { @UniqueConstraint(columnNames = { "key", "language" }) })
 @Entity
 public class Language implements Serializable
 {
@@ -21,6 +21,8 @@ public class Language implements Serializable
    @GenericGenerator(name = "uuid", strategy = "uuid2")
    @Column(name = "uuid", unique = true)
    public String uuid;
+
+   public boolean attivo = true;
 
    public String value;
 

@@ -25,9 +25,10 @@ public class Notification implements Serializable {
     @Column(name = "uuid", unique = true)
     public String uuid;
 
+    public boolean attivo = true;
+
     @Enumerated(EnumType.STRING)
     public OperationStatus operationStatus;
-
 
     @JsonIgnore
     @ManyToOne

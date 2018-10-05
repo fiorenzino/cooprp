@@ -13,323 +13,345 @@
     </div>
     <div class="ui-g-12">
         <div class="card" style="margin-bottom: 0px !important; min-height: calc(100vh - 152px)">
-            <div class="ui-g-12">
+            <div class="ui-g">
+                <div class="ui-g-12">
 
-                <div class="ui-g-6 ui-g-nopad">
-                    <div class="ui-g-12 ui-g-nopad">
-                        <div class="ui-g-3 TexAlRight FontBold">
-                            <label>Nome</label>
-                        </div>
-                        <div class="ui-g-9">
-                            <input class="Wid90" pInputText type="text" [(ngModel)]="service.search.obj.nome">
+                    <div class="ui-g-6 ui-g-nopad">
+                        <div class="ui-g-12 ui-g-nopad">
+                            <div class="ui-g-3 TexAlRight FontBold">
+                                <label>Nome</label>
+                            </div>
+                            <div class="ui-g-9">
+                                <input class="Wid90" pInputText type="text" [(ngModel)]="service.search.obj.nome">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="ui-g-6 ui-g-nopad">
-                    <div class="ui-g-12 ui-g-nopad">
-                        <div class="ui-g-3 TexAlRight FontBold">
-                            <label>Codice Societa</label>
-                        </div>
-                        <div class="ui-g-9">
-                            <input class="Wid90" pInputText type="text" [(ngModel)]="service.search.obj.societaId">
+                    <div class="ui-g-6 ui-g-nopad">
+                        <div class="ui-g-12 ui-g-nopad">
+                            <div class="ui-g-3 TexAlRight FontBold">
+                                <label>Codice Societa</label>
+                            </div>
+                            <div class="ui-g-9">
+                                <input class="Wid90" pInputText type="text" [(ngModel)]="service.search.obj.societaId">
+                            </div>
                         </div>
                     </div>
-                </div>
 
-            </div>
-            <div class="ui-g-12 TexAlCenter">
-                <button type="button" pButton icon="pi pi-search" label="Cerca"
-                        (click)="reload(table)"></button>
-            </div>
-            <div class="ui-g-12">
-                <p-table [value]="model" [lazy]="true" (onLazyLoad)="lazyLoad($event)" [paginator]="true"
-                         [responsive]="true" [rows]="service.search.pageSize"
-                         [totalRecords]="service.listSize" [resizableColumns]="true" #table>
-                    <tr>
-                        <td [attr.colspan]="7">
-                            Nessun risultato.
-                        </td>
-                    </tr>
-                    <ng-template pTemplate="emptymessage">
+                </div>
+                <div class="ui-g-12 TexAlCenter">
+                    <button type="button" pButton icon="pi pi-search" label="Cerca"
+                            (click)="reload(table)"></button>
+                </div>
+                <div class="ui-g-12">
+                    <p-table [value]="model" [lazy]="true" (onLazyLoad)="lazyLoad($event)" [paginator]="true"
+                             [responsive]="true" [rows]="service.search.pageSize"
+                             [totalRecords]="service.listSize" [resizableColumns]="true" #table>
                         <tr>
                             <td [attr.colspan]="7">
                                 Nessun risultato.
                             </td>
                         </tr>
-                    </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td [attr.colspan]="7">
+                                    Nessun risultato.
+                                </td>
+                            </tr>
+                        </ng-template>
 
-                    <ng-template pTemplate="header" let-columns>
-                        <tr class="TexBold">
-                            <th class="FontBold" style="background-color: aliceblue !important;">Indice
-                            </th>
-                            <th [pSortableColumn]="'uuid'" pResizableColumn class="FontBold"
-                                style="background-color: aliceblue !important;">Uuid
-                                <p-sortIcon [field]="'uuid'"></p-sortIcon>
-                            </th>
-                            <th pResizableColumn class="FontBold"
-                                style="background-color: aliceblue !important;">
-                                Latitudine
-                                <br/>
-                                Longitudine
-                            </th>
-                            <th pResizableColumn class="FontBold"
-                                style="background-color: aliceblue !important;">Indirizzo
-                                <br/>
-                                Comune
-                                <br/>
-                                Provincia
-                                <br/>
-                                Nazione
-                            </th>
+                        <ng-template pTemplate="header" let-columns>
+                            <tr class="TexBold">
+                                <th class="FontBold" style="background-color: aliceblue !important; width:80px">Indice
+                                </th>
+                                <th pResizableColumn class="FontBold"
+                                    style="background-color: aliceblue !important;">
+                                    Latitudine
+                                    <br/>
+                                    Longitudine
+                                </th>
+                                <th pResizableColumn class="FontBold"
+                                    style="background-color: aliceblue !important;">Indirizzo
+                                    <br/>
+                                    Comune
+                                    <br/>
+                                    Provincia
+                                    <br/>
+                                    Nazione
+                                </th>
 
-                            <th pResizableColumn class="FontBold"
-                                style="background-color: aliceblue !important;">
-                                Wbs
-                                <br/>
-                                Cantiere
-                                <br/>
-                                Commessa
-                            </th>
-                            <th [pSortableColumn]="'societaId'" pResizableColumn class="FontBold"
-                                style="background-color: aliceblue !important;">Societa
-                                <p-sortIcon [field]="'societaId'"></p-sortIcon>
-                            </th>
-                            <th [pSortableColumn]="'mail'" pResizableColumn class="FontBold"
-                                style="background-color: aliceblue !important;">Mail
-                                <p-sortIcon [field]="'mail'"></p-sortIcon>
-                            </th>
-                            <th class="FontBold" style="background-color: aliceblue !important;">Operazioni</th>
-                        </tr>
+                                <th pResizableColumn class="FontBold"
+                                    style="background-color: aliceblue !important;">
+                                    Wbs
+                                    <br/>
+                                    Cantiere
+                                    <br/>
+                                    Commessa
+                                </th>
+                                <th [pSortableColumn]="'societaId'" pResizableColumn class="FontBold"
+                                    style="background-color: aliceblue !important;">Societa
+                                    <p-sortIcon [field]="'societaId'"></p-sortIcon>
+                                </th>
+                                <th [pSortableColumn]="'mail'" pResizableColumn class="FontBold"
+                                    style="background-color: aliceblue !important;">Mail
+                                    <p-sortIcon [field]="'mail'"></p-sortIcon>
+                                </th>
+                                <th class="FontBold" style="background-color: aliceblue !important; width:150px">Operazioni</th>
+                            </tr>
 
 
-                    </ng-template>
-                    <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
-                        <tr>
-                            <td class="RowIndex">{{ rowIndex + 1 }}</td>
-                            <td>{{ rowData.uuid }}</td>
-                            <td class="ui-resizable-column"
-                                *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
-                                {{rowData.latitudine}}
-                                <br/>
-                                {{rowData.longitudine}}
-                            </td>
-                            <td class="ui-resizable-column"
-                                *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
-                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.latitudine">
-                                <br/>
-                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.longitudine">
-                            </td>
-                            <td class="ui-resizable-column"
-                                *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
-                                {{rowData.indirizzo}}
-                                <br/>
-                                {{rowData.comune}}
-                                <br/>
-                                {{rowData.provincia}}
-                                <br/>
-                                {{rowData.nazione}}
-                            </td>
-                            <td class="ui-resizable-column"
-                                *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
-                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.indirizzo">
-                                <br/>
-                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.comune">
-                                <br/>
-                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.provincia">
-                                <br/>
-                                <input id="nazione_label" class="Wid100" pInputText type="text"
-                                       [(ngModel)]="elementToEdit.nazione">
-                            </td>
-                            <td class="ui-resizable-column"
-                                *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
-                                {{rowData.wbs}}
-                                <br/>
-                                {{rowData.cantiere}}
-                                <br/>
-                                {{rowData.commessa}}
-                            </td>
-                            <td class="ui-resizable-column"
-                                *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
-                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.wbs">
-                                <br/>
-                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.cantiere">
-                                <br/>
-                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.commessa">
-                            </td>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+                            <tr>
+                                <td class="RowIndex">{{ rowIndex + 1 }}</td>
+                                <td class="ui-resizable-column"
+                                    *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                                    {{rowData.latitudine}}
+                                    <br/>
+                                    {{rowData.longitudine}}
+                                </td>
+                                <td class="ui-resizable-column"
+                                    *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                    <label class="FontBold Wid20">Latitudine</label>
+                                    <br/>
+                                    <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.latitudine">
+                                    <br/>
+                                    <label class="FontBold Wid20">Longitudine</label>
+                                    <br/>
+                                    <input class="Wid100" pInputText type="text"
+                                           [(ngModel)]="elementToEdit.longitudine">
+                                </td>
+                                <td class="ui-resizable-column"
+                                    *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                                    {{rowData.indirizzo}}
+                                    <br/>
+                                    {{rowData.comune}}
+                                    <br/>
+                                    {{rowData.provincia}}
+                                    <br/>
+                                    {{rowData.nazione}}
+                                </td>
+                                <td class="ui-resizable-column"
+                                    *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                    <label class="FontBold Wid20">Indirizzo</label>
+                                    <br/>
+                                    <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.indirizzo">
+                                    <br/>
+                                    <label class="FontBold Wid20">Comune</label>
+                                    <br/>
+                                    <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.comune">
+                                    <br/>
+                                    <label class="FontBold Wid20">Provincia</label>
+                                    <br/>
+                                    <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.provincia">
+                                    <br/>
+                                    <label class="FontBold Wid20">Nazione</label>
+                                    <br/>
+                                    <input id="nazione_label" class="Wid100" pInputText type="text"
+                                           [(ngModel)]="elementToEdit.nazione">
+                                </td>
+                                <td class="ui-resizable-column"
+                                    *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                                    {{rowData.wbs}}
+                                    <br/>
+                                    {{rowData.cantiere}}
+                                    <br/>
+                                    {{rowData.commessa}}
+                                </td>
+                                <td class="ui-resizable-column"
+                                    *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                    <label class="FontBold Wid20">Wbs</label>
+                                    <br/>
+                                    <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.wbs">
+                                    <br/>
+                                    <label class="FontBold Wid20">Cantiere</label>
+                                    <br/>
+                                    <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.cantiere">
+                                    <br/>
+                                    <label class="FontBold Wid20">Commessa</label>
+                                    <br/>
+                                    <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.commessa">
+                                </td>
 
-                            <td class="ui-resizable-column"
-                                *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
-                                {{rowData.societaId}}
-                            </td>
-                            <td class="ui-resizable-column"
-                                *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
-                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.societaId">
-                            </td>
+                                <td class="ui-resizable-column"
+                                    *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                                    {{rowData.societaId}}
+                                </td>
+                                <td class="ui-resizable-column"
+                                    *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                    <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.societaId">
+                                </td>
 
-                            <td class="ui-resizable-column"
-                                *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
-                                {{rowData.mail}}
-                            </td>
-                            <td class="ui-resizable-column"
-                                *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
-                                <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.mail">
-                            </td>
-                            <td class="Operations" *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
-                                <button type="button" pButton (click)="confirmDelete(rowData)"
-                                        icon="pi pi-trash"></button>
-                                <button type="button" pButton (click)="editInline(rowData)"
-                                        icon="pi pi-pencil"></button>
-                            </td>
-                            <td class="Operations" *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
-                                <button type="button" pButton (click)="cancelEdit()"
-                                        icon="pi pi-times"></button>
-                                <button type="button" pButton (click)="update(rowData)"
-                                        icon="pi pi-save"></button>
-                            </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
+                                <td class="ui-resizable-column"
+                                    *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                                    {{rowData.mail}}
+                                </td>
+                                <td class="ui-resizable-column"
+                                    *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                    <input class="Wid100" pInputText type="text" [(ngModel)]="elementToEdit.mail">
+                                </td>
+                                <td class="Operations"
+                                    *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
+                                    <button type="button" pButton (click)="confirmDelete(rowData)"
+                                            icon="pi pi-trash"></button>
+                                    <button type="button" pButton (click)="editInline(rowData)"
+                                            icon="pi pi-pencil"></button>
+                                </td>
+                                <td class="Operations"
+                                    *ngIf="elementToEdit != null && elementToEdit.uuid === rowData.uuid">
+                                    <button type="button" pButton (click)="cancelEdit()"
+                                            icon="pi pi-times"></button>
+                                    <button type="button" pButton (click)="update(rowData)"
+                                            icon="pi pi-save"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+                <div class="EmptyBox10"></div>
+                <p-panel header="Inserimento nuovo record">
+                    <div class="ui-g">
+                        <div class="ui-g-12">
+
+                            <div class="ui-g-3 ui-g-nopad">
+                                <div class="ui-g-12 ui-g-nopad">
+                                    <div class="ui-g-3 TexAlRight FontBold">
+                                        <label>Societa</label>
+                                    </div>
+                                    <div class="ui-g-9">
+                                        <input class="Wid90" pInputText type="text" [(ngModel)]="element.societaId">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ui-g-3 ui-g-nopad">
+                                <div class="ui-g-12 ui-g-nopad">
+                                    <div class="ui-g-3 TexAlRight FontBold">
+                                        <label>Mail</label>
+                                    </div>
+                                    <div class="ui-g-9">
+                                        <input class="Wid90" pInputText type="text" [(ngModel)]="element.mail">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ui-g-3 ui-g-nopad">
+                                <div class="ui-g-12 ui-g-nopad">
+                                    <div class="ui-g-3 TexAlRight FontBold">
+                                        <label>Latitudine</label>
+                                    </div>
+                                    <div class="ui-g-9">
+                                        <input class="Wid100" pInputText type="text" [(ngModel)]="element.latitudine">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui-g-3 ui-g-nopad">
+                                <div class="ui-g-12 ui-g-nopad">
+                                    <div class="ui-g-3 TexAlRight FontBold">
+                                        <label>Longitudine</label>
+                                    </div>
+                                    <div class="ui-g-9">
+                                        <input class="Wid100" pInputText type="text" [(ngModel)]="element.longitudine">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui-g-12">
+
+                            <div class="ui-g-3 ui-g-nopad">
+                                <div class="ui-g-12 ui-g-nopad">
+                                    <div class="ui-g-3 TexAlRight FontBold">
+                                        <label>Indirizzo</label>
+                                    </div>
+                                    <div class="ui-g-9">
+                                        <input class="Wid90" pInputText type="text" [(ngModel)]="element.indirizzo">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ui-g-3 ui-g-nopad">
+                                <div class="ui-g-12 ui-g-nopad">
+                                    <div class="ui-g-3 TexAlRight FontBold">
+                                        <label>Comune</label>
+                                    </div>
+                                    <div class="ui-g-9">
+                                        <input class="Wid90" pInputText type="text" [(ngModel)]="element.comune">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ui-g-3 ui-g-nopad">
+                                <div class="ui-g-12 ui-g-nopad">
+                                    <div class="ui-g-3 TexAlRight FontBold">
+                                        <label>Provincia</label>
+                                    </div>
+                                    <div class="ui-g-9">
+                                        <input class="Wid100" pInputText type="text" [(ngModel)]="element.provincia">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui-g-3 ui-g-nopad">
+                                <div class="ui-g-12 ui-g-nopad">
+                                    <div class="ui-g-3 TexAlRight FontBold">
+                                        <label>Nazione</label>
+                                    </div>
+                                    <div class="ui-g-9">
+                                        <input class="Wid100" pInputText type="text" [(ngModel)]="element.nazione">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui-g-12">
+
+
+                            <div class="ui-g-3 ui-g-nopad">
+                                <div class="ui-g-12 ui-g-nopad">
+                                    <div class="ui-g-3 TexAlRight FontBold">
+                                        <label>WBS</label>
+                                    </div>
+                                    <div class="ui-g-9">
+                                        <input class="Wid90" pInputText type="text" [(ngModel)]="element.wbs">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ui-g-3 ui-g-nopad">
+                                <div class="ui-g-12 ui-g-nopad">
+                                    <div class="ui-g-3 TexAlRight FontBold">
+                                        <label>Cantiere</label>
+                                    </div>
+                                    <div class="ui-g-9">
+                                        <input class="Wid100" pInputText type="text" [(ngModel)]="element.cantiere">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui-g-3 ui-g-nopad">
+                                <div class="ui-g-12 ui-g-nopad">
+                                    <div class="ui-g-3 TexAlRight FontBold">
+                                        <label>Commessa</label>
+                                    </div>
+                                    <div class="ui-g-9">
+                                        <input class="Wid100" pInputText type="text" [(ngModel)]="element.commessa">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui-g-3 ui-g-nopad">
+                            </div>
+                        </div>
+                        <div class="ui-g-5 TexAlRight">
+                            <button type="button" pButton icon="pi pi-save" label="Salva"
+                                    (click)="save()"></button>
+                        </div>
+                        <div class="ui-g-2 TexAlCenter">
+
+                        </div>
+                        <div class="ui-g-5 TexAlLeft">
+                            <button type="button" pButton icon="pi pi-times" label="Annulla"
+                                    (click)="undo(null)"></button>
+                        </div>
+
+                    </div>
+                </p-panel>
             </div>
-            <div class="EmptyBox10"></div>
-            <div class="ui-g-12">
-
-                <div class="ui-g-3 ui-g-nopad">
-                    <div class="ui-g-12 ui-g-nopad">
-                        <div class="ui-g-3 TexAlRight FontBold">
-                            <label>Societa</label>
-                        </div>
-                        <div class="ui-g-9">
-                            <input class="Wid90" pInputText type="text" [(ngModel)]="element.societaId">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ui-g-3 ui-g-nopad">
-                    <div class="ui-g-12 ui-g-nopad">
-                        <div class="ui-g-3 TexAlRight FontBold">
-                            <label>Mail</label>
-                        </div>
-                        <div class="ui-g-9">
-                            <input class="Wid90" pInputText type="text" [(ngModel)]="element.mail">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ui-g-3 ui-g-nopad">
-                    <div class="ui-g-12 ui-g-nopad">
-                        <div class="ui-g-3 TexAlRight FontBold">
-                            <label>Latitudine</label>
-                        </div>
-                        <div class="ui-g-9">
-                            <input class="Wid100" pInputText type="text" [(ngModel)]="element.latitudine">
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-g-3 ui-g-nopad">
-                    <div class="ui-g-12 ui-g-nopad">
-                        <div class="ui-g-3 TexAlRight FontBold">
-                            <label>Longitudine</label>
-                        </div>
-                        <div class="ui-g-9">
-                            <input class="Wid100" pInputText type="text" [(ngModel)]="element.longitudine">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="ui-g-12">
-
-                <div class="ui-g-3 ui-g-nopad">
-                    <div class="ui-g-12 ui-g-nopad">
-                        <div class="ui-g-3 TexAlRight FontBold">
-                            <label>Indirizzo</label>
-                        </div>
-                        <div class="ui-g-9">
-                            <input class="Wid90" pInputText type="text" [(ngModel)]="element.indirizzo">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ui-g-3 ui-g-nopad">
-                    <div class="ui-g-12 ui-g-nopad">
-                        <div class="ui-g-3 TexAlRight FontBold">
-                            <label>Comune</label>
-                        </div>
-                        <div class="ui-g-9">
-                            <input class="Wid90" pInputText type="text" [(ngModel)]="element.comune">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ui-g-3 ui-g-nopad">
-                    <div class="ui-g-12 ui-g-nopad">
-                        <div class="ui-g-3 TexAlRight FontBold">
-                            <label>Provincia</label>
-                        </div>
-                        <div class="ui-g-9">
-                            <input class="Wid100" pInputText type="text" [(ngModel)]="element.provincia">
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-g-3 ui-g-nopad">
-                    <div class="ui-g-12 ui-g-nopad">
-                        <div class="ui-g-3 TexAlRight FontBold">
-                            <label>Nazione</label>
-                        </div>
-                        <div class="ui-g-9">
-                            <input class="Wid100" pInputText type="text" [(ngModel)]="element.nazione">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="ui-g-12">
-
-
-                <div class="ui-g-3 ui-g-nopad">
-                    <div class="ui-g-12 ui-g-nopad">
-                        <div class="ui-g-3 TexAlRight FontBold">
-                            <label>WBS</label>
-                        </div>
-                        <div class="ui-g-9">
-                            <input class="Wid90" pInputText type="text" [(ngModel)]="element.wbs">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ui-g-3 ui-g-nopad">
-                    <div class="ui-g-12 ui-g-nopad">
-                        <div class="ui-g-3 TexAlRight FontBold">
-                            <label>Cantiere</label>
-                        </div>
-                        <div class="ui-g-9">
-                            <input class="Wid100" pInputText type="text" [(ngModel)]="element.cantiere">
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-g-3 ui-g-nopad">
-                    <div class="ui-g-12 ui-g-nopad">
-                        <div class="ui-g-3 TexAlRight FontBold">
-                            <label>Commessa</label>
-                        </div>
-                        <div class="ui-g-9">
-                            <input class="Wid100" pInputText type="text" [(ngModel)]="element.commessa">
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-g-3 ui-g-nopad">
-                </div>
-            </div>
-            <div class="ui-g-5 TexAlRight">
-                <button type="button" pButton icon="pi pi-save" label="Salva"
-                        (click)="save()"></button>
-            </div>
-            <div class="ui-g-2 TexAlCenter">
-
-            </div>
-            <div class="ui-g-5 TexAlLeft">
-                <button type="button" pButton icon="pi pi-times" label="Annulla"
-                        (click)="undo(null)"></button>
-            </div>
-
         </div>
     </div>
 </div>

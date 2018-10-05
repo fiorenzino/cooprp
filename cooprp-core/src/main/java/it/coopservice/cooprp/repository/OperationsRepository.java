@@ -16,6 +16,11 @@ public class OperationsRepository extends BaseRepository<Operation>
             Map<String, Object> params) throws Exception
    {
       super.applyRestrictions(search, alias, separator, sb, params);
+      {
+         sb.append(separator).append(" ").append(alias).append(".attivo = :attivo ");
+         params.put("attivo", search.getObj().attivo);
+         separator = " and ";
+      }
    }
 
    public int updateLocation(String operationUuid, String locationUuid)

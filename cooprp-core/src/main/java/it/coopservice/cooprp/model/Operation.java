@@ -26,6 +26,8 @@ public class Operation implements Serializable
    @Column(name = "uuid", unique = true)
    public String uuid;
 
+   public boolean attivo = true;
+
    @Enumerated(EnumType.STRING)
    public OperationStatus operationStatus;
 
@@ -66,6 +68,7 @@ public class Operation implements Serializable
 
    @Transient
    public String token;
+
    public Operation()
    {
 
