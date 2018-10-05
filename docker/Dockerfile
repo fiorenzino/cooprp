@@ -7,7 +7,7 @@ ADD  docker/dodeploy /opt/eap/standalone/deployments/cooprp.war.dodeploy
 
 ENV DEBUG true
 ENV TZ Europe/Rome
-
+ENV GESTA_HOST http://cooprp-gesta-service-saw-dev.cloud.coopservice.it
 EXPOSE 8787
 EXPOSE 8080
 
