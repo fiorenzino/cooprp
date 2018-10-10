@@ -56,7 +56,7 @@ public class UtentiRepositoryRs implements Serializable
                      .entity("No user found for alias: " + username
                      ).build();
          }
-         Utente utente = ldapService.find(username);
+         Utente utente = ldapService.findByCodiceFiscale(username);
 
          List<Societa> societas = societaRepository.societaPagaOperatore(username);
          utente.societa = societas;

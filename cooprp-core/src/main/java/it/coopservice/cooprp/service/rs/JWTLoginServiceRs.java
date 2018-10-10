@@ -74,7 +74,7 @@ public class JWTLoginServiceRs implements Serializable {
          e.printStackTrace();
       }
       try {
-         utente = ldapService.login(jwtLogin.getUsername(), jwtLogin.getPassword());
+         utente = ldapService.loginCodiceFiscale(jwtLogin.getUsername(), jwtLogin.getPassword());
          if (utente == null) {
             throw new Exception("utente is null");
          }
