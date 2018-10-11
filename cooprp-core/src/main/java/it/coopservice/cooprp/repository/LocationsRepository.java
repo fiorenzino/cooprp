@@ -23,12 +23,12 @@ public class LocationsRepository extends BaseRepository<Location>
             StringBuffer sb,
             Map<String, Object> params) throws Exception
    {
-      super.applyRestrictions(search, alias, separator, sb, params);
       {
          sb.append(separator).append(" ").append(alias).append(".attivo = :attivo ");
          params.put("attivo", search.getObj().attivo);
          separator = " and ";
       }
+      super.applyRestrictions(search, alias, separator, sb, params);
    }
 
    public String findLocation(String latitudine, String longitudine, String societaId)

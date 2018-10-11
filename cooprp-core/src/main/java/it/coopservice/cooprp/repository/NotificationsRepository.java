@@ -14,11 +14,11 @@ public class NotificationsRepository extends BaseRepository<Notification>
    @Override protected void applyRestrictions(Search<Notification> search, String alias, String separator,
             StringBuffer sb, Map<String, Object> params) throws Exception
    {
-      super.applyRestrictions(search, alias, separator, sb, params);
       {
          sb.append(separator).append(" ").append(alias).append(".attivo = :attivo ");
          params.put("attivo", search.getObj().attivo);
          separator = " and ";
       }
+      super.applyRestrictions(search, alias, separator, sb, params);
    }
 }
