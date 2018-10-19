@@ -94,7 +94,6 @@
                         <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
                             <tr>
                                 <td class="RowIndex">{{ rowIndex + 1 }}</td>
-                                <td class="ui-resizable-column">{{rowData.uuid}}</td>
                                 <td class="ui-resizable-column"
                                     *ngIf="elementToEdit == null || elementToEdit.uuid !== rowData.uuid">
                                     {{rowData.language}}
