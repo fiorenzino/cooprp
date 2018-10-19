@@ -74,6 +74,7 @@ public class Utente implements Serializable
       claims.put("username", username);
       claims.put("name", nome);
       claims.put("mail", email);
+      claims.put("matricola", matricola);
       claims.put("surname", cognome);
       claims.put("roles", getRuoli().toArray());
       claims.putAll(getAttributi());
@@ -98,6 +99,16 @@ public class Utente implements Serializable
          attributi = new HashMap<>();
       }
       return attributi;
+   }
+
+   public String getMatricola()
+   {
+      return matricola;
+   }
+
+   public void setMatricola(String matricola)
+   {
+      this.matricola = matricola;
    }
 
    public void setAttributi(Map<String, String> attributi)

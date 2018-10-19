@@ -48,7 +48,7 @@ public class UtentiUtils
                         utente.setNome(attribute.getStringValue());
                     }
                     if ("csIDVuid".equals(attribute.getName())) {
-                        utente.setUsername(attribute.getStringValue());
+                        utente.setMatricola(attribute.getStringValue());
                     }
 //                    if ("mail".equals(attribute.getName())) {
 //                        utente.setMail(attribute.getStringValue());

@@ -78,6 +78,7 @@ public class JWTLoginServiceRs implements Serializable {
          if (utente == null) {
             throw new Exception("utente is null");
          }
+         utente.setUsername(jwtLogin.getUsername());
          logger.info("jwtLogin: " + jwtLogin);
 
       } catch (Throwable e) {
@@ -98,6 +99,7 @@ public class JWTLoginServiceRs implements Serializable {
             }
          }
 
+         userRoles.add("Admin");
          String token = JWTUtils.encode(getJwtSecret(), getJwtExpireTime(),
                   jwtLogin.getUsername(), jwtLogin.getPassword(), userRoles);
 
