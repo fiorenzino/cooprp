@@ -60,7 +60,7 @@ public class UtentiRepositoryRs implements Serializable
 
          List<Societa> societas = societaRepository.societaPagaOperatore(username);
          utente.societa = societas;
-
+         utente.setUsername(username.toUpperCase());
          //String matrProvv = operatoriAttiviRepository.matricolaProvvOperatoreValido(username);
          if (utente != null && !utente.getRuoli().isEmpty())
          {
