@@ -78,4 +78,9 @@ public class OperationsRepository extends BaseRepository<Operation>
                .setParameter("UUID", operationUuid)
                .executeUpdate();
    }
+
+   @Override protected String getDefaultOrderBy()
+   {
+      return "realDate";
+   }
 }
